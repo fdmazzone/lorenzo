@@ -2,15 +2,17 @@
 
 
 
-
-En este trabajo denotaremos por $\rr$ al conjunto de todos los números reales, y por $\rr^n$ al conjunto de todas las $n$-uplas con componentes reales.  Si $x\in \rr^n$ escribimos la norma euclídea como $|x|=\sqrt{x_1^2+\cdots x_n^2}$\index[Simbolo]{$\vert x\vert$}, otra norma euclídea que usaremos sera $|x|_1=|x_1|+\cdots +|x_n|$. \index[Simbolo]{$\vert x\vert_1 $}  Usaremos el producto interno usual en $\rr^n $ definido por  $x\cdot y=x_1y_1 + \cdots+
+ \normalmarginpar
+En este trabajo denotaremos por $\rr$ al conjunto de todos los números reales, y por $\rr^n$ al conjunto de todas las $n$-uplas con componentes reales.  Si $x\in \rr^n$ escribimos la norma euclídea como $|x|=\sqrt{x_1^2+\cdots x_n^2}$\index[Simbolo]{$\vert x\vert$}, otra norma \deleted{euclídea} que usaremos \replaced{será}{sera} la del \added{\emph{caminante}} $|x|_1=|x_1|+\cdots +|x_n|$. \index[Simbolo]{$\vert x\vert_1 $}  \highlight[comment={repetido}]{Usaremos} el producto interno usual en $\rr^n $ definido por  $x\cdot y=x_1y_1 + \cdots+
 x_ny_n$. Se pude pensar al vector $x$ como una matriz de $n\times 1$, y notaremos $x^*$ \index[Simbolo]{$x^*$}a la matriz traspuesta, $1\times n$ de $x$.
 
-El conjunto de todas las funciones continuas, $f:[0,T]\to \rr^n$ será denotado como $C([0,T],\rr^n)$ o simplemente $C([0,T])$\index[Simbolo]{$C([0,T])$} si su codominio es $\rr$.    Escribiremos $f'(x)$ para la derivada de funciones escalares como para funciones vectoriales. 
+El conjunto de todas las funciones continuas, $f:[0,T]\to \rr^n$ será denotado como $C([0,T],\rr^n)$ o simplemente $C([0,T])$\index[Simbolo]{$C([0,T])$} si su codominio es $\rr$.    Escribiremos $f'(x)$ para la derivada de funciones escalares como para funciones vectoriales. \todo{Me parece que hay que decirlo con más precisión, qué tipo de función vectorial estás considerando? es la matriź de derivadas?}
 
-Sea $\mathcal{X}$ un espacio topológico llamaremos $\sigma$-álgebra  de Borel\index{$\sigma$-álgebra} a la $\sigma$-álgebra generada por los conjuntos abiertos de $\mathcal{X}$, y la  denotaremos $\mathscr{B}(\mathcal{X})$. \index[Simbolo]{$\mathscr{B}(\mathcal{X})$}
-En particular $\mathscr{B}(\rr)$ \index[Simbolo]{$\mathscr{B}(\rr)$}sera la $\sigma$-álgebra generada por los intervalos abiertos de $\rr$ y $\mathscr{B}([a,b])$\index[Simbolo]{$\mathscr{B}([a,b])$} la generada por los intervalos abiertos relativo de $[a,b]$. Diremos que una medida es de Borel si esta definida sobre $\sigma$-álgebra de Borel.\index{$\sigma$-álgebra!Borel}
-Sea $A$ y $B$ dos conjuntos, notaremos $A\setminus B$\index[Simbolo]{$A\setminus B$} al complemento de $B$ respecto de $A$.
+\replaced{Sea $\mathcal{X}$ un espacio topológico, }{Sea $\mathcal{X}$ un espacio topológico} llamaremos $\sigma$-álgebra  de Borel\index{$\sigma$-álgebra} a la $\sigma$-álgebra generada por los conjuntos abiertos de $\mathcal{X}$, y la  denotaremos $\mathscr{B}(\mathcal{X})$. \index[Simbolo]{$\mathscr{B}(\mathcal{X})$}
+En particular $\mathscr{B}(\rr)$ \index[Simbolo]{$\mathscr{B}(\rr)$} \replaced{será}{sera} la $\sigma$-álgebra generada por los intervalos abiertos de $\rr$ y $\mathscr{B}([a,b])$\index[Simbolo]{$\mathscr{B}([a,b])$} la generada por los intervalos abiertos \replaced{relativos}{relativo} de $[a,b]$. Diremos que una medida es de Borel si esta definida sobre $\sigma$-álgebra de Borel.\index{$\sigma$-álgebra!Borel}
+
+\reversemarginpar\setlength{\marginparwidth}{2cm}
+\deleted[comment={\scriptsize me parece que queda como fuera de lugar aca}]{Sea $A$ y $B$ dos conjuntos, notaremos $A\setminus B$\index[Simbolo]{$A\setminus B$} al complemento de $B$ respecto de $A$.}
 
 
 
@@ -24,8 +26,10 @@ Sea $A$ y $B$ dos conjuntos, notaremos $A\setminus B$\index[Simbolo]{$A\setminus
 	$$\V(u,[0,T])=\sup_{\substack{ t_i\in [0,T]\\
 			0\leq t_1 < t_2< \dots < t_n  \leq T}}\left\lbrace \sum_{i=1}^{n}|u(t_{i+1})-u(t_i)|\right\rbrace $$
 \end{defi}
+
+\reversemarginpar
 \begin{defi}
-	Una función $u:[0,T]\to \rr$ es de variación acotada\index{variación!acotada} en el intervalo $[0,T]$ si $\V(u,[0,T])<\infty$. \\
+	Una función $u:[0,T]\to \rr$ es de variación acotada\index{variación!acotada} en el intervalo $[0,T]$ si $\V(u,[0,T])<\infty$. \\ \todo{no pondría punto y aparte, y de ponerlo tendría que ir una sangría como en todos los párrafos nuevos}
 	El conjunto de todas las funciones de variación acotada en $[0,T]$ se denota como $BV([0,T],\rr)$.\index[Simbolo]{$BV([0,T],\rr)$} 
 	Si además $u(0)=u(T)$ entonces diremos que $u\in BV_T([0,T],\rr)$. \index[Simbolo]{$BV_T([0,T],\rr)$}
 \end{defi}
@@ -33,7 +37,8 @@ Sea $A$ y $B$ dos conjuntos, notaremos $A\setminus B$\index[Simbolo]{$A\setminus
 	 $u\in BV([0,T],\rr)$ si y sólo si $u$ se puede escribir como la diferencia de dos funciones crecientes en $[0,T]$.
 \end{thm}
 
-La demostración de este teorema o más información sobre funciones de variación acotada puede encontrarse en \cite[Teorema  2.7.2]{Carter} %(Teorema  2.7.2). 
+La demostración de este teorema o más información sobre funciones de variación acotada puede encontrarse en 
+ \cite[\deleted{Teorema  2.7.2}]{Carter} %(Teorema  2.7.2). 
 \begin{cor}
 	Si $u\in BV([0,T],\rr)$, entonces 
 	\begin{itemize}
@@ -45,12 +50,12 @@ La demostración de este teorema o más información sobre funciones de variaci�
 
 
 
-
+\todo{Faltaría un hilo conductor en esta sección, son como definiciosnes seguidas de teoremas si un nexo entre si}
 
 
 \section{Medida de Lebesgue-Stieltjes}
 
-El siguiente resultado esta demostrados en \cite[Proposición 1.2]{folland} y en \cite[Proposición 1.7]{folland}, y muestra que la $\sigma$-álgebra de Borel esta generada por intervalos de la forma $[a,b)$.
+El siguiente resultado \replaced{está demostrado}{esta demostrados} en \cite[Proposición 1.2]{folland} y en \cite[Proposición 1.7]{folland}, y muestra que la $\sigma$-álgebra de Borel \replaced{está}{esta} generada por intervalos de la forma $[a,b)$.
 
 \begin{prop}\label{prop:algebra de borel}Sea $\mathcal{A}$ \index[Simbolo]{$\mathcal{A}$}la colección de todos los conjuntos que se escriben como unión finita de intervalos disjuntos de la forma $[a,b)$ con $-\infty<a<b\leq\infty$, más el conjunto $\emptyset$.
 	\begin{itemize}
