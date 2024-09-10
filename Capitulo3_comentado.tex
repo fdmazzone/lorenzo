@@ -11,13 +11,23 @@
 
 Los problemas impulsivos pueden pensarse como problemas donde intervienen medidas. En el  ejemplo \ref{ejemplo1} del capitulo 1, al  problema impulsivo \eqref{eq:imp} lo escribimos como una MDE de la siguiente manera
 \begin{equation*}
-	d(x')=\sum_{k=1}^{r}\dfrac{I_k}{m}\delta_{t_k}.
+	d(x')\textrm{\todo{No son necesarios los paréntesis}}=\sum_{k=1}^{r}\dfrac{I_k}{m}\delta_{t_k}.
 \end{equation*}
-Si  realizamos la sustitución $v=x'$ tendremos el sistema
+Si  realizamos la sustitución $v=x'$ tendremos el sistema\comment{No es una forma muy habitual de denotar un sistema, tengo miedo que no se entienda, te sugiero lo verde (use el paquete empheq que es bastante comodo}
+
+{\color{green}
+\begin{empheq}[left=\empheqlbrace]{align}
+  x' &=v  d\lambda,& \\
+      v'& =\frac{1}{m} \sum_{k=1}^{r}I_k\delta_{t_k} .
+  \end{empheq}
+}
+
+
 \begin{equation*}
 	\left( x',v'\right) =\left( v ,\dfrac{1}{m}\right) \cdot \left( d\lambda, \displaystyle\sum_{k=1}^{r}I_k\delta_{t_k}\right) , 
 \end{equation*}
-donde el término de la derecha del producto escalar es una medida vectorial.  En \cite{distel} se define medida vectorial para espacios de Banach $X$  \textcolor{red}{y?...no sé si este comentario es conveniente aquí...}. Cuando $X$ es un espacio euclídeo  $m$-dimensional, una medida vectorial se puede pensar como un vector de medidas, es decir $\nu=(\nu_1,\nu_2,...,\nu_m)$ donde cada $\nu_i$ es una medida de Borel con signo.  La variación total de una medida vectorial $\nu$ se define para un conjunto de Borel $E$, (ver definición 4 de \cite{distel}, tomando $\rr^m$ con la norma de $l^1$) como 
+donde el término de la derecha del producto escalar es una medida vectorial.  En \cite{distel} se define medida vectorial para espacios de Banach $X$  \textcolor{red}{y?...no sé si este comentario es conveniente aquí...}. \comment{Para mi tenes que poner todo lo que tenes sobre medidas vectoriales en la sección siguiente y pasarla al capítuo anterior que debería ser de todos los prerequisitos. Empezaría recordando la definición del concepto de meddia vectorial, porque es algo que no se si todos conocen. Es menos familiar que el concepto de variación acotada} Cuando $X$ es un espacio euclídeo  $m$-dimensional, una medida vectorial se puede pensar como un vector de medidas, es decir $\nu=(\nu_1,\nu_2,...,\nu_m)$ donde cada $\nu_i$ es una medida de Borel con signo.  La variación total de una medida vectorial $\nu$ se define para un conjunto de Borel $E$, (ver definición 4 de \cite{distel}, tomando $\rr^m$ con la norma de $l^1$) como 
+ 
 $$||\nu||(E)=sup\left\{ \sum_{j=1}^r |\nu(E_j)| _1 \text{ donde } \bigcup_{j=1}^rE_j=E\right\},$$
 teniendo en cuenta que $|\nu(E_j)|_1=\displaystyle\sum_{i=1}^m|\nu_i(E_j)|$.
 
@@ -1305,4 +1315,6 @@ A este sistema de ecuaciones lo podemos escribir de manera vectorial, tomando $\
 	\end{array}\right. 
 \end{equation*} 
 Si llamamos $F(t,\varphi)=\left( G_1(t,\varphi)\chi_{[0,T]-\{t_1,..,t_r\}}+G_2(t,\varphi)\chi_{\{t_1,...,t_r\}}\right) $ y tomando $d\mu=d\left(\lambda+\displaystyle\sum_{i=1}^r\delta_{t_i}\right)$, entonces la ecuación vectorial se transforma en la del Teorema \ref{th:final}. 
+ 
  \end{example}
+ 

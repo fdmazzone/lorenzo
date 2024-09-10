@@ -76,7 +76,7 @@ Veamos que $\left(BV_\alpha([0,T],\rr^n),d\right)$ es completo. Sea $\{u_n\}$ un
 \begin{equation} \label{eq:desigualdad d}
 |u_n(t)|\leq|u_n(t)-u_n(0)|+|u_n(0)|\leq V(u_n,[0,T])+|\alpha|\leq K.
 \end{equation}
-Luego por el \replaced{Teorema}{teorema} de Helly's \replaced{(ver \cite{Natanson})}{\cite{Natanson}}
+Luego por el \replaced{Primer Teorema de Helly}{teorema de Helly's} \replaced{(ver \cite{Natanson})}{\cite{Natanson}}
 \comment{Va a quedar mejor si identificas con más presisión el teorema}
 existe una \replaced{subsucesión}{subsecesión} convergente\replaced{. Una sucesión de Cauchy que posee una subsucesión convergente es, en si misma, convergente. Por}{, y por} lo tanto la sucesión es convergente.
 }
@@ -112,11 +112,14 @@ La demostración de este teorema y más información sobre funciones de variaci�
 \section{Medida de Lebesgue-Stieltjes}
 A continuación, vamos a enumerar algunos resultados necesarios para definir la medida de Lebesgue-Stieljes asociada a una función de variación acotada. Para un desarrollo mas detallado ver \cite{folland}.
 \subsection{Medida de Lebesgue-Stieltjes en $\mathbb{R}$}
-Vamos a definir la medida de Labesgue-Stieltjes para una función \replaced{no decreciente}{de creciente} y continua a izquierda. El mismo desarrollo se puede hacer para funciones \replaced{no crecientes}{decrecientes}, con la salvedad de que la medida generada \replaced{es}{en} negativa.
+ 
+Vamos a definir la medida de Labesgue-Stieltjes para una función \replaced{no decreciente}{de creciente}\comment{El creciente que debería sustiuirse por no decreciente aparece un montón de veces, no te lo voy a corregir cada vez} y continua a izquierda. El mismo desarrollo se puede hacer para funciones \replaced{no crecientes}{decrecientes}, con la salvedad de que la medida generada \replaced{es}{en} negativa.
 
 
 \begin{defi}\label{def:premedida}
 Sea $\mathcal{A}$ un álgebra\added{ de subconjuntos de $X$, es decir $\mathcal{A}$ es cerrado para uniones e intersecciones finitas y $\emptyset,X\in\mathcal{A}$}. Diremos que la función $\mu_0:\mathcal{A}\to [0,\infty)$ es una premedida\index{premedida}, si cumple 
+ 
+ 
 \begin{itemize}
     \item $\mu_0(\emptyset)=0,$
     \item si $\displaystyle\left\{A_i\right\}_1^\infty$ es una familia de conjuntos disjuntos tal que $\displaystyle\bigcup_1^\infty A_i\in \mathcal{A}$, entonces $\displaystyle\mu_0\left(\bigcup_1^\infty A_i\right)\leq \sum_1^\infty \mu_0\left(A_i\right).$ 
@@ -141,7 +144,7 @@ es una premedida  en $\mathcal{A}$. A partir de una premedida podemos definir  m
 $$\mu^{*}(E)=\inf\left\lbrace \sum_{ j=1 }^{\infty}\mu_{0}(A_j) \mid \ A_j\in \mathcal{A}, \ \  E\subset\bigcup_{j=1}^{\infty}A_j \right\rbrace. $$\index[Simbolo]{$\mu^{*}$}En $\mathscr{B}(\rr)$, $\mu^{*}$ satisface los axiomas de medida \cite[Proposición 1.13]{folland}.
 %A partir de la medida exterior podemos definir los conjuntos $\mu$-medibles.
 \begin{defi}
-	Si $u:\rr \to \rr$ es creciente y continua a izquierda, llamaremos medida de Lebesgue-Stieltjes $\mu_{u}$ a la medida inducida por $\mu_{0}$ mediante el procedimiento anterior. \index{medida! Lebesgue-Stieltjes}
+	Si $u:\rr \to \rr$ es creciente\comment{no te lo corrijo más, pero casi siempre que decis creciente deberías decir en su lugar no decreciente} y continua a izquierda, llamaremos medida de Lebesgue-Stieltjes $\mu_{u}$ a la medida inducida por $\mu_{0}$ mediante el procedimiento anterior. \index{medida! Lebesgue-Stieltjes}
 \end{defi}
 
 El siguiente teorema nos permite escribir cualquier medida finita sobre la $\sigma$-álgebra de Borel como una medida de Lebesgue-Stieltjes. La demostración es análoga a  \cite[Teorema  1.16]{folland}.
@@ -154,7 +157,7 @@ El siguiente teorema nos permite escribir cualquier medida finita sobre la $\sig
 		-\mu([0,-x)) &   si  & x < 0. 
 	\end{array}
 	\right. $$
-	Entonces $F$ es creciente y continua izquierda, y $\mu=\mu_{F}$.
+	Entonces $F$ es creciente \replaced{,}{y} continua izquierda\deleted{,} y $\mu=\mu_{F}$.
 \end{thm}  
 
 
@@ -184,7 +187,9 @@ El siguiente teorema nos permite escribir cualquier medida finita sobre la $\sig
 \end{obs}
 
 \subsection{Medida de  Lebesgue-Stieltjes en un dominio acotado}
-\textcolor{blue}{ Por la proposición 1.2 de \cite{folland}, la familia de conjuntos $\mathcal{E}=\{(-\infty,x),\mid x\in\rr\}$ genera la $\sigma-$álgebra de Borel. Llamaremos $\mathscr{B}([a,b])$ \index[Simbolo]{$\mathscr{B}([a,b])$} a la $\sigma$-álgebra de Borel restringida al intervalo $[a,b]$, la cual  está generada por la familia de intervalos $\mathcal{E}\cap [a,b]=\left\lbrace [a,x) \mid x\leq b\right\rbrace $ \index[Simbolo]{$\mathcal{E}$}.}
+
+\textcolor{blue}{ Por la \replaced{Proposición}{proposición} 1.2 de \cite{folland}, la familia de conjuntos $\mathcal{E}=\{(-\infty,x),\mid x\in\rr\}$ genera la $\sigma-$álgebra de Borel. Llamaremos $\mathscr{B}([a,b])$ \index[Simbolo]{$\mathscr{B}([a,b])$} a la $\sigma$-álgebra de Borel restringida al intervalo $[a,b]$, la cual  está generada por la familia de intervalos $\mathcal{E}\cap [a,b]=\left\lbrace [a,x) \mid x\leq b\right\rbrace $ \index[Simbolo]{$\mathcal{E}$}.}
+ 
  
 Sea $u:[a,b]\to\rr$ una función  creciente y continua a izquierda, podemos extender su dominio a todos los números reales, de la siguiente forma:
 $$\overline{u}(t)=\left\lbrace \begin{array}{rll}
@@ -207,11 +212,13 @@ $$\overline{u}(t)=\left\lbrace \begin{array}{rll}
 \begin{defi}
 	Sea $u:[a,b]\to\rr$ una función  creciente y continua a izquierda. Para $A\subset[a,b]$  definimos la medida de Lebesgue-Stieltjes $\mu_u$ por 
 	\begin{equation*}
-	\mu_{u}(A)=\mu_{\overline{u}}(A)=\inf\left\lbrace \sum_{ j=1 }^n[\overline{u}(b_j)-\overline{u}(a_j)] \mid A\subset \bigcup_{j=1}^n[a_j,b_j)\right\rbrace. 
+ 
+	\mu_{u}(A)=\mu_{\overline{u}}(A)=\inf\left\lbrace \sum_{ j=1 }^n[\overline{u}(b_j)-\overline{u}(a_j)] \mid A\subset \bigcup_{j=1}^n[a_j,b_j)\right\rbrace\textrm{\todo{No le pondría el ínfimo, es la definición de medida que ya diste. Por otro lado había que considerar uniones infinitas.}}. 
  \end{equation*}
 \end{defi}
 
-\begin{obs}  \vphantom{a}
+\begin{obs}  \vphantom{a} \reversemarginpar \comment{Estas observaciones las citas después?}
+ 
 	\begin{itemize}
         \item $\mu_{u}([a,b])=\mu_{\overline{u}}([a,b])=\overline{u}(b)-\overline{u}(a)=u(b)-u(a)$.
 		\item Sea $[s,t)\subset[a,b]$ entonces $$\mu_{u}([s,t))=\mu_{\overline{u}}([s,t))=\overline{u}(t)-\overline{u}(s)=u(t)-u(s).$$
@@ -226,9 +233,15 @@ $$\overline{u}(t)=\left\lbrace \begin{array}{rll}
 
 
 
-
+ 
+\comment{Lo que viene, no sería más apropiado ponerlo en la sección siguiente?}
 \textcolor{blue}{Si en la definición \ref{def:premedida} tomamos a la función $\mu_0:\mathcal{A}\to \rr$, entonces la medida generada se llama medida con signo. \index{medida con signo}Veamos que para $f\in BV([a,b],\rr^n)$ la medida asociada a $f$, es una medida con signo.}
 
+\comment{Sería más enfático sobre, estuve rato para darme cuenta lo que querías decir. Te lo escribo en verde}
+
+\textcolor{green}{
+ Si en la definición \ref{def:premedida} asumimos que $\mu_0$ toma valores en $\rr$, en lugar de los reales no negativos, llamaremos  a $\mu_0$ una \emph{premedida con signo}. Ahora podemos asociar una medida con signo a $\mu_0$ por el mismo procedimiento que usamos para premedidas (no negativas). }
+ 
 
 
 \begin{thm} \label{Thm:medidas}
