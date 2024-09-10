@@ -1,0 +1,168 @@
+%%%%%%%%%%%%%%%%%%%%%%%%PREAMBLE%%%%%%%%%%%%%%%%%%%==========================================================================
+\documentclass[a4paper,11pt]{book}
+\usepackage[left=4.5cm,right=4.5cm,top=2.5cm,bottom=2.5cm]{geometry}
+
+%%%%%%%%%  Packages %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amsmath, amsthm, amssymb,latexsym}
+\usepackage{mathabx}
+\usepackage{enumerate}
+\usepackage{mathtools}
+\usepackage{multicol}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel} 
+\usepackage{color}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{colortbl}
+\usepackage{subcaption}
+\usepackage{mathrsfs} 
+\usepackage{imakeidx}
+\usepackage{enumitem} %%%\item\labe
+\usepackage{soul}
+\usepackage{empheq}
+
+%%%%%%%%%%%%%%% Para comentarios en el texto bo
+  
+\usepackage{todonotes}
+\usepackage{marginnote}
+\let\marginpar\marginnote
+\usepackage{verbdef}
+
+\usepackage{cancel}
+
+\usepackage{changes}
+
+\definechangesauthor[name={Fer}, color=red]{Fer}
+
+\makeatletter
+\@namedef{Changes@AuthorColor}{green}
+\colorlet{Changes@Color}{green}
+\makeatother
+ 
+
+%%%%%%%%%%%%%%  Theorems like environments %%%%%%%%%%%%%%%%%%
+\theoremstyle{plain}
+\newtheorem{thm}{Teorema}[chapter]
+\newtheorem{lem}[thm]{Lema}
+\newtheorem{prop}[thm]{Proposición}
+\newtheorem{cor}[thm]{Corolario}
+\newtheorem{defi}[thm]{Definición}
+\newtheorem{propi}[thm]{Propiedad}
+
+\theoremstyle{remark}
+\newtheorem{obs}[thm]{Observación}
+
+\newcounter{example}[section]
+\newenvironment{example}[1][]{\refstepcounter{example}\par\medskip
+   \noindent \textbf{Ejemplo~\theexample. #1} \rmfamily}{\medskip}
+   
+   
+%===============LABEL ITEM =========================
+\makeatletter
+\newcommand{\labitem}[2]{%
+\def\@itemlabel{#1}
+\item
+\def\@currentlabel{#1}\label{#2}}
+\makeatother
+\makeatletter
+\def\namedlabel#1#2{\begingroup
+    #2%
+    \def\@currentlabel{#2}%
+    \phantomsection\label{#1}\endgroup
+}
+\makeatother
+
+
+
+%%%%%%%%%%%%%%%%% New commands %%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\orlnor}{\|_{L^{\Phi}}}
+\newcommand{\linf}{\|_{L^{\infty}}}
+\newcommand{\lphi}{L^{\Phi}}
+\newcommand{\lpsi}{L^{\Phi^{\star}}}
+\newcommand{\wphi}{W^{1}\lphi}
+\newcommand{\wphit}{W^{1}\lphi_T}
+\newcommand{\wphittilde}{\widetilde{W^1}\lphi_T}
+\newcommand{\sobnor}{\|_{W^{1}\lphi}}
+\newcommand{\sobnort}{\|_{W^{1}\lphi_T}}
+\newcommand{\rr}{\mathbb{R}}
+\newcommand{\nn}{\mathbb{N}}
+\DeclareMathOperator{\sign}{sign}
+%%%%%%%%%%%%%%%%%%%
+\DeclareMathOperator*{\sen}{sen}
+\newcommand{\F}{\mathtt{F}}
+\newcommand{\f}{\pmb{f}}
+\newcommand{\V}{\operatorname{V}}
+\newcommand{\Ves}{\operatorname{essV}}
+%======================Document===========================================
+
+\makeindex[columns=2, title=Glosario]
+
+\makeindex[name=Simbolo,columns=3, title=Indice de Símbolos]
+
+
+
+\begin{document}
+\hyphenation{a-ni-so-tro-pic}
+
+\numberwithin{equation}{section}
+
+\title{Soluciones Periódicas a Ecuaciones con Medidas mediante el Método Shoothing.}
+\author{ Fernando D. Mazzone. \thanks{SECyT-UNRC, FCEyN-UNLPam and CONICET.}\\
+ Sonia E. Acinas. \thanks{ FCEyN-UNLPam and CONICET}\\
+ Lorenzo F. Sierra. \thanks{ FCEyN-UNLPam.}\\
+ \textcolor{blue}{Debe haber una formato para las tesis.}\\
+ \textcolor{blue}{ Generalmente en la caràtula aparece el postulante}\\
+ \textcolor{blue}{ y debajo los directores}\\
+ 
+}
+\date{}
+%\thanks{Agradecimiento}
+
+
+    \maketitle
+%====================================================================
+%\begin{abstract}
+%Anotaciones y ejercicios del Capitulo I del Libro: Topological Methods in the Study of Bourdary Value Problems- Pablo Amster
+%\end{abstract}
+
+\begingroup%Locallizing the change to `thefootnote'.
+\renewcommand{\thefootnote}{}%Removing the footnote symbol.
+%\footnotetext{\textbf{2010  AMS Subject Classification.} Primary: 34C25 Secondary: 34B15}
+%\footnotetext{\textbf{Keywords and phrases:} periodic solutions, Orlicz spaces, Euler-Lagrange equation, critical point}
+\endgroup
+\chapter*{}
+%\pagenumbering{Roman}
+%\setcounter{page}{3}
+\begin{flushright}
+\textit{Dedicatoria}
+\end{flushright}
+
+\include{agradecimiento_comentado}
+\tableofcontents
+
+\include{Capitulo1_comentado}
+
+% 
+ \include{Capitulo2_comentado}
+% 
+ \include{Capitulo3_comentado}
+ \include{Capitulo4_comentado}
+%  
+%  
+ \include{ApendiceA_comentado}
+
+
+
+
+
+\printindex
+\printindex[Simbolo]
+%\bibliographystyle{plain}
+\bibliographystyle{abbrv}
+\bibliography{lib_tesis}
+
+
+
+
+
+\end{document}
