@@ -1,0 +1,302 @@
+\chapter{Experimentos Numéricos}
+
+En este capítulo vamos a desarrollar un método numérico para hallar soluciones a MDE mediante el método shooting. Primero haremos una descripción del método y luego analizaremos la convergencia del mismo. En apéndice  \ref{apendice A} mostraremos el código que utilizamos, escrito en lenguaje Pyhton.
+
+\section{Método Numérico }
+
+
+
+Como ya dijimos, el método shooting consiste en resolver la MDE
+\begin{equation}\label{eq:P}
+\left\lbrace \begin{array}{lc}
+d\varphi=f(t,\varphi) d\mu& \text{ para } t\in [0,T]\\
+\varphi(0)=\alpha,
+\end{array}\right. \tag{$P$}
+\end{equation} 
+para varios valores de $\alpha$ y ver para cuál se cumple que  $\alpha=\varphi(T)$.
+
+De acuerdo a  la Definición \ref{def:sol},  una solución de \eqref{eq:P} es una función $\varphi\in  BV([0,T],\rr^n)$ y continua izquierda tal que
+\begin{equation}\label{eq:integral}
+    \varphi(t)=\alpha+\int_{[0,t)}f(s,\varphi(s)) \;d\mu.
+\end{equation}
+El procedimiento consta de dos partes. En la primera se aproxima la solución al problema de valores iniciales \ref{eq:P} mediante iteraciones sucesivas de Picard \cite{Simmons}, las cuales se generan de la siguiente manera
+\begin{equation*}
+    \begin{split}
+        &\varphi_0=\alpha\\
+        &\varphi_k(t)=\alpha+\int_{0,t}f(s,\varphi_{k-1}(s)) \,d\mu.
+    \end{split}
+\end{equation*}
+\textcolor{blue}{En \cite{P.Mazzone} los autores muestran que   las iteraciones de Picard convergen  a la solución en un caso más general, en el Teorema \ref{th:picar} mostraremos la convergencia en nuestro caso particular y además veremos con qué velocidad converge}. 
+
+La segunda parte consiste en aproximar el término de la derecha de \eqref{eq:integral}, el cual es una integral en el sentido de Labesgue-Stieljes. Para aproximar la integral de (L-S) usaremos  sumas de Riemann-Stieljes, de la siguiente manera
+\begin{equation}\label{eq:4.1.2}
+    \int_{[0,t)}f(s,\varphi(s))\; d\mu \approx \sum_{k=1}^{n-1}f(t_k,\varphi(t_k))\mu\left([t_k,t_{k+1})\right),
+\end{equation}
+donde los puntos $\{t_k\}$ son una partición del intervalo $[0,t]$. Cabe aclarar que la función  que estamos integrando no es necesariamente  integrable en el sentido de la integral de Riemann-Stieljes (R-S)\index[Simbolo]{(R-S)}. Para que la integral de (R-S) exista es suficiente que la función sea continua \cite{Lakshmikan} o el conjunto de discontinuidades tenga medida cero con respecto a la medida $\mu$ \cite{Hobson}, lo cual por lo general no pasa. En el Teorema \ref{th:R-S} veremos que cuando evaluamos la función en el miembro de la izquierda  de \eqref{eq:4.1.2}, la suma de (R-S) efectivamente converge a la integral de (L-S).
+
+
+
+
+
+%\section{Convergencia del método}
+\begin{thm}\label{th:R-S}
+    Sea $F:[0,T]\times \rr^n\to \rr^n$ continua  izquierda y sea $\mu$ una medida de Borel positiva y finita. Supongamos que existe $M>0$ tal que $|F|<M$. Entonces para todo $\epsilon>0$ y para cualquier partición del intervalo $[0,T]$, $P_n=\{0=t_1, t_2, \ldots, t_n=T\}$, existe $\delta>0$ tal que 
+      \begin{equation*}
+    \left|\int_{[0,T)}F(s)\; d\mu - \sum_{k=1}^{n-1}F(t_k)\mu\left([t_k,t_{k+1})\right)\right|<\epsilon,
+\end{equation*}   
+siempre que $\max\{t_{k+1}-t_k\}<\delta$.
+\textcolor{blue}{Así está bien?}
+\end{thm}
+\begin{proof}[Dem.]
+Supongamos que la afirmación es falsa, entonces para todo $\in\nn$ existe una partición $P^n_k=\{0=t^n_1, t^n_2, \ldots, t^n_k=T\}$ del intervalo $[0,T]$ tal que $\max\{t_{k+1}-t_k\}<1/n$ y
+\begin{equation}\label{eq:4.6}
+    \left|\int_{[0,T)}F(s)\; d\mu - \sum_{k=1}^{n-1}F(t_k)\mu\left([t_k,t_{k+1})\right)\right|>\epsilon.
+\end{equation}    
+Si armamos la función simple 
+$$\Phi(t)=\sum_{k=1}^{n-1}F(t_k) \chi_{[t^n_k,t^n_{k+1})}$$
+para cada $t\in[0,T]$ existe un intervalo de la partición $P^n_k$ tal que $t\in[t_k,t_{k+1})$ y además $t-1/n<t^n_k$, por lo tanto $t^n_k$ tiende a $t$ por izquierda cuando $n\to \infty$. Como $F$ es continua a izquierda, tenemos que
+\begin{equation*}
+\begin{split}
+    |\Phi(t)-F(t)|=\left|\sum_{k=1}^{n-1}[F(t_k)-F(t)] \chi_{[t^n_k,t^n_{k+1})} \right|\leq |F(t^n_k)-F(t)|\to 0
+\end{split}
+\end{equation*}
+Luego, como $|F|<M$ entonces $|\Phi|<M$ y por el Teorema de la convergencia mayorada de Lebesgue 
+\begin{equation*}
+\begin{split}
+    \int_{[0,T)}F(t)\, d\mu&=\lim_{n\to \infty}\int_{[0,T)}\Phi(t)\, d\mu=\lim_{n\to \infty}\int_{[0,T)}\sum_{k=1}^{n-1}F(t_k) \chi_{[t^n_k,t^n_{k+1})}\, d\mu \\ &=\lim_{n\to \infty}\sum_{k=1}^{n-1}F(t_k) \mu([t^n_k,t^n_{k+1})).
+\end{split}
+\end{equation*}
+Llegamos a un absurdo, pues se contradice \eqref{eq:4.6}
+\end{proof}
+Antes de ver el caso particular de las iteraciones de Picard, vamos a enunciar el Teorema de punto fijo de Banach cuya demostración se puede ver en \cite{Amster}.
+\begin{thm}[Punto Fijo de Banach]
+Sea $\mathcal{X}$ un espacio métrico completo, $T:\mathcal{X}\to \mathcal{X}$ y  $\exists K<1$ tal que 
+\begin{equation*}
+    d(T[x],T[y])\leq Kd(x,y)    
+\end{equation*}
+para todo $x,y\in \mathcal{X}$. Entonces $T$ tiene un único punto fijo $\tilde{x}$. Además, si $x_0\in \mathcal{X}$ es un punto arbitrario y $\{x_{n}\}_n^\infty=0$, la sucesión recursiva definida como   $x_n=T(x_{n-1})$, entonces $\tilde{x}=\lim_{n\to \infty}x_n$.
+\end{thm}
+El siguiente corolario es muy útil para definir las iteraciones de Picard.
+\begin{cor}\label{col:picard}
+Sea $\mathcal{X}$ un espacio métrico completo. Definimos  $T^n=T\circ T\circ ...\circ T$ ($n$-veces) y además $\exists K<1$ tal que 
+    \begin{equation*}
+    d(T^n[x],T^n[y])\leq Kd(x,y)    
+    \end{equation*}
+para todo $x,y\in \mathcal{X}$ y para todo $n$. Entonces $T$ tiene un único punto fijo en $\mathcal{X}$.
+\end{cor}
+\begin{thm}\label{th:picar}
+    Sea $\mu$ una medida de Borel finita y positiva en $[0,T]$, y sea $f:[0,T]\times\rr^n\to\rr^n$ continua y que satisface \ref{f lipschitz}, entonces el problema \eqref{eq:P} tiene una única solución, es decir existe una única función $\varphi\in BV([0,T],\rr^n)$, continua a izquierda tal que 
+    \begin{equation*}
+        \varphi(t)=\alpha + \int_{[0,t)}f(s,\varphi(s))\, d\mu.
+    \end{equation*}
+\end{thm}
+\begin{proof}[Dem.] %\vphantom{a}\\
+Sea $$\mathcal{X}=BV_\alpha([0,T],\rr^n)\cap \{\varphi:[0,T]\to \rr^n \mid \varphi \text{ es continua a izquierda}\}.$$
+Definimos el operador $T$, como 
+\begin{equation}\label{eq:T}
+    T[\varphi]= \alpha + \int_{[0,t)}f(s,\varphi(s))\, d\mu.
+\end{equation}
+Entonces, un punto fijo de $T$ será la solución que estamos buscando. Veamos las siguientes afirmaciones.
+
+\begin{enumerate}
+    \item
+    \textbf{$\mathcal{X}$ es completo con la métrica $d$.} 
+    
+    En la proposición \ref{pro:completo}, vimos que $(BV_\alpha([0,T],\rr^n),d)$ es completo. Veamos que $\mathcal{X}$ es un subconjunto cerrado de $BV_\alpha([0,T],\rr^n)$ y por lo tanto completo. Sea $\{\varphi_n\}\subset \mathcal{X}$ ta que $d(\varphi_n, \varphi_0) \to 0$, entonces $\varphi_0\in BV_\alpha([0,T],\rr^n)$. Además, para cualquier $\epsilon>0$  existe $n_0$, tal que $\forall n>n_0$ vale que $d(\varphi_0,\varphi_n)<\epsilon/2$. Luego, para cualquier $t\in[0,T]$, tenemos que
+    \begin{equation*}
+        \begin{split}
+            |\varphi_0(t-1/n)-\varphi_0(t)|&\leq 
+            |\varphi_0(t-1/n)-\varphi_n(t-1/n)|\\&+|\varphi_n(t-1/n)-\varphi_n(t)|+|\varphi_n(t)-\varphi_0(t)|\\
+            &\leq d(\varphi_0,\varphi_n)+|\varphi_n(t-1/n)-\varphi_n(t)|+d(\varphi_n,\varphi_0)\\
+            &\leq \epsilon +|\varphi_n(t-1/n)-\varphi_n(t)|.
+        \end{split}
+    \end{equation*}
+Como $\varphi_n$ es continua a izquierda, podemos concluir que $\varphi_0\in \mathcal{X}$. Luego $\mathcal{X}$ es un subconjunto cerrado de un espacio completo, por lo tanto también es completo.
+
+\item  \textbf{El operador $T$ está bien definido.}
+
+Si $\varphi \in \mathcal{X}$, entonces para cualquier $t\in[0,T]$ vale que
+\begin{equation}\label{afi2.1}
+    |\varphi(t)|\leq |\varphi(0)|+ V(\varphi,[0,T]),
+\end{equation}
+es decir $\varphi$ está acotada. Por otro lado, como $f$ es Lipschitz
+\begin{equation}\label{afi2.2}
+\begin{split}
+    |f(t,x)|&\leq |f(t,x)-f(t,0)|+ |f(t,0)|\\
+    &\leq L|x|+|f(t,0)|,
+\end{split}
+\end{equation}
+y además, dado que $f$ es continua existe $a>0$ tal que $|f(t,0)|<a$ para todo $t\in [0,T]$. Entonces por \eqref{afi2.1} y \eqref{afi2.2} para todo $t\in[0,T]$ verifica que
+\begin{equation*}
+    |f(t,\varphi(t)|\leq L|\varphi(t)|+|f(t,0)|\leq L\left(|\varphi(0)+V(\varphi,[0,T]) \right) +a.
+\end{equation*}
+Si llamamos \index[Simbolo]{$A_\varphi$} $A_\varphi=L\left(|\varphi(0)+V(\varphi,[0,T]) \right) +a$, entonces
+\begin{equation}\label{afi3.1}
+\begin{split}
+    \int_{[0,t)}f(s,\varphi(s))\, d\mu\leq A_\varphi\mu([0,t))<\infty,
+\end{split}
+\end{equation}
+es decir,  $T[\varphi]<\infty$ para toda $\varphi\in \mathcal{X}$. 
+
+\item \textbf{Sea $\varphi\in \mathcal{X}$, entonces $T[\varphi]\in \mathcal{X}$. } 
+
+Primero observemos que $T[\varphi]\in BV_\alpha([0,T],\rr^n)$. Sea $P_n=\{t_k\}_{k=1}^n$ una partición del intervalo $[0,T]$, entonces usando \eqref{afi3.1} y que $\mu$ es positiva, 
+\begin{equation*}
+    \begin{split}
+        \sum_{k=1}^{n-1}|T[\varphi](t_{k+1})-T[\varphi](t_{k})|&\leq \sum_{k=1}^{n-1}\int_{[t_k,t_{k+1})}|f(s\varphi(s)|\, d\mu, \\
+        &\leq A_\varphi\mu([0,T))<\infty.
+    \end{split}
+\end{equation*}
+
+
+Como el miembro de la derecha no depende de la partición, cuando tomamos supremo sobre todas las particiones del intervalo $[0,T]$, tenemos que
+\begin{equation*}
+    V(T[\varphi],[0,T])<\infty.
+\end{equation*}
+Además $T[\varphi](0)=\alpha$, por lo tanto $T[\varphi]\in BV_\alpha([0,T],\rr^n)$.
+
+Por último,  mostremos que $T[\varphi]$ es continua a izquierda. Sea $t_n \to t^-$, entonces como $[t_{n+1},t)\subset [t_n,t)$ por \cite[3.28]{Zo}
+
+\textcolor{red}{qué es (3.28) en la referencia? Ecuación, Teorema, Lema?}\textcolor{blue}{no dice..}
+\begin{equation*}
+    \lim_{n\to \infty}\mu([t_n,t))=\mu\left(\bigcap_{n=1}^\infty[t_n,t)\right)=\mu(\emptyset)=0.
+\end{equation*}
+Luego por \eqref{afi3.1}
+\begin{equation*}
+\begin{split}
+    \left|\int_{[0,t_n)}f(s,\varphi(s))\, d\mu - \int_{[0,t)}f(s,\varphi(s))\, d\mu   \right|&\leq \int_{[t_n,t)}|f(s,\varphi(s))|\, d\mu \\ &\leq A_\varphi\mu([t_n,t))\to 0,
+\end{split}
+\end{equation*}
+es decir $T[\varphi](t_n)\to T[\varphi](t)$.
+
+\item \textbf{Sea $T^n=T\circ T\circ ...\circ T$ ($n$-veces). Mostremos que  para cualquier $\varphi_1,\varphi_2\in \mathcal{X}$, $\exists L>0$ tal que }
+\begin{equation}\label{eq:4.3.1}
+d(T^n[\varphi_1],T^n[\varphi_2]\leq \dfrac{L^{n}\left[\mu([0,T))\right]^{n}}{n!} d(\varphi_1,\varphi_2),
+\end{equation}
+
+
+Para $n=0$ es claro que \eqref{eq:4.3.1} se verifica pues
+\begin{equation*}
+    \begin{split}
+d(T^0[\varphi_1],T^0[\varphi_2])&=V(T^0[\varphi_1]-T^0[\varphi_2],[0,T])=V(\varphi_1-\varphi_2,[0,T])\\ & =d(\varphi_1,\varphi_2).
+\end{split}
+\end{equation*}
+Supongamos válida la desigualdad \eqref{eq:4.3.1} para $n$ y probemos que vale para $n+1$.
+Sea $\{t_i\}_{i=1}^k$ una partición del intervalo $[0,T]$. Como $f$ es Lipschitz, entonces existe $L>0$ tal que
+\begin{equation*}
+    \begin{split}
+        &\sum_{i=1}^{k-1}\left|T^{n+1}[\varphi_1](t_{i+1})-T^{n+1}[\varphi_2](t_{i+1})-T^{n+1}[\varphi_1](t_{i})+T^{n+1}[\varphi_2](t_{i})  \right|\\
+        &\leq \sum_{i=1}^{k-1}\int_{[t_i,t_{i+1})}\left| f(s,T^n[\varphi_1](s))-f(s,T^n[\varphi_2](s))  \right|\, d\mu\\
+        &\leq \sum_{i=1}^{k-1}L\int_{[t_i,t_{i+1})}\left| T^n[\varphi_1](s)-T^n[\varphi_2](s)  \right|\, d\mu \\ 
+        &\leq L\int_{[0,T]}\left| T^n[\varphi_1](s)-T^n[\varphi_2](s)  \right|\, d\mu.
+    \end{split}
+\end{equation*}
+Además, por el lema \ref{lem:var-acotada} se verifica que 
+$$|T^n[\varphi_1](s)-T^n[\varphi_2](s)|\leq d(T^n[\varphi_1],T^n[\varphi_2]),$$
+y como supusimos que la desigualdad \eqref{eq:4.3.1} 
+vale para $n$, entonces
+\begin{equation*}
+    \begin{split}
+        &\sum_{i=1}^{k-1}\left|T^{n+1}[\varphi_1](t_{i+1})-T^{n+1}[\varphi_2](t_{i+1})-T^{n+1}[\varphi_1](t_{i})+T^{n+1}[\varphi_2](t_{i})  \right|\\
+        &\leq L\int_{[0,T]}\left| T^n[\varphi_1](s)-T^n[\varphi_2](s)  \right|\, d\mu \leq L\int_{[0,T]}d(T^n[\varphi_1],T^n[\varphi_2])\, d\mu \\ &\leq \dfrac{L^{n+1}d(\varphi_1,\varphi_2)}{n!}\int_{[0,T]}\left[\mu([0,s))\right]^n\, d\mu.
+    \end{split}
+\end{equation*}
+Luego, si tomamos supremo sobre todas las particiones del intervalo $[0,T]$ obtenemos que
+\begin{equation*}
+    \begin{split}
+d(T^{n+1}[\varphi_1],T^{n+1}[\varphi_2]) &\leq \dfrac{L^{n+1}d(\varphi_1,\varphi_2)}{n!}\int_{[0,T]}\left[\mu([0,s))\right]^n\, d\mu.
+    \end{split}
+\end{equation*}
+Aplicando la observación \ref{Teorema 6.1}, tomando $F=\dfrac{x^{n+1}}{n+1}$ y $g(s)=\mu([0,s))$, tenemos que
+\begin{equation*}
+    \begin{split}
+d(T^{n+1}[\varphi_1],T^{n+1}[\varphi_2]) &\leq \dfrac{L^{n+1}d(\varphi_1,\varphi_2)}{n!}\dfrac{\left[\mu([0,T])\right]^{n+1}}{n+1}\\
+&\leq \dfrac{L^{n+1}\left[\mu([0,T])\right]^{n+1}}{(n+1)!}d(\varphi_1,\varphi_2).
+    \end{split}
+\end{equation*}
+
+\end{enumerate}
+Luego $T$ cumple con las hipótesis del corolario \ref{col:picard} y existe $\varphi\in\mathcal{X}$ tal que $T[\varphi]=\varphi$. Es decir, existe $\varphi\in BV([0,T],\rr^n)$, continua a izquierda tal que $\varphi(0)=\alpha$ y para todo $t\in[0,T]$ vale que
+$$\varphi(t)=\alpha\int_{[0,t)}f(s,\varphi(s) \, d\mu.$$
+\end{proof}
+
+\begin{cor}[Velocidad de convergencia]
+Si estamos en las condiciones del Teorema \ref{th:picar} y $\varphi$ es un punto fijo de $T$, definido como \eqref{eq:T}. Entonces para cualquier $\varphi_1\in BV_\alpha([0,T],\rr^n)$ y continua a izquierda, \textcolor{red}{vale} que
+    \begin{equation}
+    |T^n[\varphi_1](t)-\varphi(t)|\leq \dfrac{\left(L\mu([0,T])\right)^n}{n!}d(\varphi_1,\varphi)   ,     
+    \end{equation}
+para todo $t\in[0,T].$
+\end{cor}
+\begin{proof}[Dem.]
+La desigualdad se deduce del Teorema \ref{th:picar} y del Lema \ref{lem:var-acotada}.
+\end{proof}
+
+
+
+
+
+
+\section{Simulaciones}
+
+Aplicamos el método shooting para problemas como los descriptos en el ejemplo \ref{ejemplo vectorial}. En particular\textcolor{red}{,} \underline{queríamos}
+
+\textcolor{red}{en pasado?...aunque se haya hablado del tema en la intro, si presenta a continuación el sistema...convendría escribir en presente o futuro: queremos/querremos} 
+
+hallar soluciones periódicas para la ecuación de un péndulo forzado sin rozamiento, donde la fuerza externa que actúa es una fuerza impulsiva.
+
+\textcolor{red}{Algo para presentar lo que sigue???  : (dos puntos) en lugar del . (punto seguido), ó cambiar el punto seguido por  '' , como/ del estilo de''  }
+\begin{equation}\label{eq:pendulo}
+	\left\lbrace \begin{array}{l}
+	u''(t)=-sen(u(t))+\displaystyle\sum_{i=1}^r d \delta_{t_i} \mbox{ con } t\in[0,4\pi]\\
+ u'(0)=u'(4\pi)\\
+ u(0)=u(4\pi).
+	\end{array}\right.
+\end{equation} 
+Si $u'=v$ y llamando $\varphi=(u,v)$, entonces una solución de \eqref{eq:pendulo} es
+ \begin{equation*}
+     \begin{split}
+        \varphi(t)=\alpha+\int_0^t(v,-sen(u))ds+\int_{[0,t)}(0,1)\, \displaystyle\sum_{i=1}^r d \delta_{t_i}.
+     \end{split}
+ \end{equation*}
+ Tomamos los valores de $\alpha=(u(0),v(0))$ dentro de una malla de valores comprendida entre $[-\pi,\pi]\times[-2,2]$ con un espesor de 0.02. Para cada valor de $\alpha$ encontramos la solución  al problema de los valores iniciales y calculamos el error como $||\alpha-\varphi(4\pi)||$. Para desechar valores muy grande del error y acentuar los valores cercanos a $0$, decidimos definir el error como
+ $$Error=ln\left(1+||\alpha-\varphi(4\pi)||^{0.1}\right).$$
+ A estos valores de error le asignamos una escala de colores para determinar gráficamente donde se encontraba  el error. Se utilizó el lenguaje Python para programar el experimento, se 
+ 
+ \underline{utilizaron}  \textcolor{red}{emplearon/usaron} 
+ 
+ la librerías \cite{numpy}, \cite{matplot}
+ 
+ 
+ 
+  
+ El gráfico obtenido se ve en la figura \ref{fig:1}.
+
+ 
+
+ \begin{figure}[h]
+
+
+
+\begin{subfigure}[h!]{0.45\textwidth}
+  \includegraphics[width=\textwidth]{grafico 1.jpeg}
+  \caption{Mapa de error}
+  \label{fig:1}
+\end{subfigure}
+\hfil
+\begin{subfigure}[h!]{0.45\textwidth}
+  \includegraphics[width=\textwidth]{grafico 2.jpeg}
+  \caption{Solución periódica obtenida}
+\end{subfigure}	\centering
+	\caption{}
+\end{figure}
+
+
+
+
+\textcolor{red}{Comentarios para todo el trabajo: \\
+En gral, en libros y papers, cuando se menciona una definición, proposición, teorema, lema, etc PROPIO, suele escribirse con mayúscula. Por ejemplo: Teorema 3.2, Definición 1.3. \\
+Es una cuestión de gustos, pero esa escritura sirve para dar relevancia a tu trabajo (como poner un nombre propio) y también actúa como un GPS cuando se está leyendo (la mayúscula llama la atención y permite reubicarse fácilmente en el texto).
+\\
+\underline{Otra cuestión:} \\
+En los resultados/definiciones/etc. propios, se usan mucho los verbos cumplir y valer. \\
+Para que el discurso quede un poco más variado,  podrían incorporarse otros verbos como  verificar, satisfacer  o algún otro sinónimo.}
