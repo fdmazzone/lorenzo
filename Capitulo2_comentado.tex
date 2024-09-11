@@ -15,6 +15,10 @@ En particular, $\mathscr{B}(\rr)$ \index[Simbolo]{$\mathscr{B}(\rr)$}será la $\
 
 
 
+{\color{green} Después de haber avanzado en la lectura del capítulo me parece que va a quedar mejor si adoptas como  criterio ir de lo más general a lo más particular. Por ejemplo, yo empezaría recordando la definición de medida vectorial y pondría las propiedades de la medidas vectoriales. Las funciones de variación  acotada y la medida de Lebesgue-Stieltjes la dejaría más bien para el último, dado que son ejemplos más concretos de medidas. En el mismo sentido, noté que algunas cosas las decis para funciones no decrecientes  y después las repetis para funciones de variación acotada. Te sugiero decirlo (si se puede) para funciones de variación acotada y después decir en el caso particular de que la función sea no decreciente que pasa.
+}
+
+
 \section{Funciones de variación acotada}
 \textcolor{blue}{Cuando definimos \ref{eq:problema A} dijimos que $\varphi$ era una función de variación acotada y que entendíamos a  $d\varphi$ como la medida de Lebesgue-Stieltjes de $\varphi$. En esta sección daremos las definiciones y principales resultados, que nos permitan definir la medida de Lebesgue-Stieltjes de una función de variación acotada.}
 
@@ -25,11 +29,16 @@ En particular, $\mathscr{B}(\rr)$ \index[Simbolo]{$\mathscr{B}(\rr)$}será la $\
 \added{donde el supremo se toma sobre todas las particiones $P=\{t_1,\ldots,t_n\}$ del intervalo $[0,T]$} 
 \end{defi}
 
+\added{La variación nos permite introducir una clase de funciones y su correspondiente espacio.}
+
 \begin{defi}
 \textcolor{blue}{ Una función $u:[0,T]\to \rr$ es de variación acotada\index{variación!acotada} en el intervalo $[0,T]$ si $\V(u,[0,T])<\infty$.
 	El conjunto de todas las funciones de variación acotada en $[0,T]$ se denota como $BV([0,T],\rr)$.\index[Simbolo]{$BV([0,T],\rr)$} Si además $u(0)=\alpha$ diremos que $u\in BV_\alpha([0,T],\rr^n)$. \index[Simbolo]{$BV_\alpha([0,T],\rr^n)$}}
 	%Si además $u(0)=u(T)$ entonces diremos que $u\in BV_T([0,T],\rr)$. \index[Simbolo]{$BV_T([0,T],\rr)$}
 \end{defi}
+
+\added{El espacio de las funciones de variación acotada está incrustado dentro del espacio de las funciones acotadas.}
+
 \begin{lem} \label{lem:var-acotada}
     \textcolor{blue}{ $u\in BV_\alpha([0,T],\rr^n)$, entonces para todo $t\in[0,T]$ existe $K>0$ tal que $|u(t)|\leq K$.  }
 \end{lem}
@@ -42,6 +51,8 @@ Luego llamando $K=V(u,[0,T])+|\alpha|$, tenemos que $|u(t)|\leq K$.  }
     
 \end{proof}
 
+
+\added{Podemos dotar a $BV_\alpha([0,T],\rr^n)$ de una métrica.}
 
     
 \begin{prop}\textcolor{blue}{ \label{pro:completo}
@@ -90,7 +101,7 @@ existe una \replaced{subsucesión}{subsecesión} convergente\replaced{. Una suce
 
 El siguiente resultado permite caracterizar a las funciones de variación acotada.
 
-\begin{thm}\label{T-VB}
+\begin{thm}[{\color{green} \cite[Teorema 3.27]{folland}}  ]\label{T-VB} \comment{Me parece que va a quedar mejor así, si en cada teorema pones la referencia de donde se puede ver}
 	 $u\in BV([0,T],\rr)$ si y sólo si $u$ se puede escribir como la diferencia de dos funciones crecientes en $[0,T]$.
 \end{thm}
 
@@ -110,11 +121,12 @@ La demostración de este teorema y más información sobre funciones de variaci�
 
 
 \section{Medida de Lebesgue-Stieltjes}
-A continuación, vamos a enumerar algunos resultados necesarios para definir la medida de Lebesgue-Stieljes asociada a una función de variación acotada. Para un desarrollo mas detallado ver \cite{folland}.
+A continuación, vamos a enumerar algunos resultados necesarios para definir la medida de Lebesgue-\replaced{Stieltjes}{Stieljes}\comment{Revisa por otros Stieljes} asociada a una función de variación acotada. Para un desarrollo mas detallado ver \cite{folland}.
 \subsection{Medida de Lebesgue-Stieltjes en $\mathbb{R}$}
  
-Vamos a definir la medida de Labesgue-Stieltjes para una función \replaced{no decreciente}{de creciente}\comment{El creciente que debería sustiuirse por no decreciente aparece un montón de veces, no te lo voy a corregir cada vez} y continua a izquierda. El mismo desarrollo se puede hacer para funciones \replaced{no crecientes}{decrecientes}, con la salvedad de que la medida generada \replaced{es}{en} negativa.
+Vamos a definir la medida de \replaced{Lebesgue}{Labesgue}-Stieltjes para una función \replaced{no decreciente}{de creciente}\comment{El creciente que debería sustiuirse por no decreciente aparece un montón de veces, no te lo voy a corregir siempre} y continua a izquierda. El mismo desarrollo se puede hacer para funciones \replaced{no crecientes}{decrecientes}, con la salvedad de que la medida generada \replaced{es}{en} negativa.
 
+\added{Vamos a recordar un procedimiento general para construir medidas que aplicaremos para definir la medida de Lebesgue-Stieltjes (ver \cite{folland} para más detalles)}
 
 \begin{defi}\label{def:premedida}
 Sea $\mathcal{A}$ un álgebra\added{ de subconjuntos de $X$, es decir $\mathcal{A}$ es cerrado para uniones e intersecciones finitas y $\emptyset,X\in\mathcal{A}$}. Diremos que la función $\mu_0:\mathcal{A}\to [0,\infty)$ es una premedida\index{premedida}, si cumple 
@@ -126,7 +138,12 @@ Sea $\mathcal{A}$ un álgebra\added{ de subconjuntos de $X$, es decir $\mathcal{
 \end{itemize}
 
 \end{defi}
-\textcolor{blue}{Vamos a notar con $\mathcal{A}$ \index[Simbolo]{$\mathcal{A}$} a la colección de todos los conjuntos que se escriben como unión finita de intervalos disjuntos de la forma $[a,b)$ con $-\infty<a<b<\infty$, más el conjunto $\emptyset$. En proposición 1.2 y  1.7 de \cite{folland} se muestra que  $\mathcal{A}$ es un álgebra y que además genera la $\sigma$-álgebra de Borel.}
+
+
+\comment{Aca traería la cuestión de la medida exterior, porque eso forma parte del método general, es decir con la definición que das extendes cualquier premedida}
+
+
+\textcolor{blue}{Vamos a \replaced{denotar}{notar} con $\mathcal{A}$ \index[Simbolo]{$\mathcal{A}$} a la colección de todos los conjuntos que se escriben como unión finita de intervalos disjuntos de la forma $[a,b)$ con $-\infty<a<b<\infty$, más el conjunto $\emptyset$. En proposición 1.2 y  1.7 de \cite{folland} se muestra que  $\mathcal{A}$ es un álgebra y que además genera la $\sigma$-álgebra de Borel.}
 
 %\begin{prop}El conjunto $\mathcal{A}$ cumple que:
 %\label{prop:algebra de borel}
@@ -144,7 +161,7 @@ es una premedida  en $\mathcal{A}$. A partir de una premedida podemos definir  m
 $$\mu^{*}(E)=\inf\left\lbrace \sum_{ j=1 }^{\infty}\mu_{0}(A_j) \mid \ A_j\in \mathcal{A}, \ \  E\subset\bigcup_{j=1}^{\infty}A_j \right\rbrace. $$\index[Simbolo]{$\mu^{*}$}En $\mathscr{B}(\rr)$, $\mu^{*}$ satisface los axiomas de medida \cite[Proposición 1.13]{folland}.
 %A partir de la medida exterior podemos definir los conjuntos $\mu$-medibles.
 \begin{defi}
-	Si $u:\rr \to \rr$ es creciente\comment{no te lo corrijo más, pero casi siempre que decis creciente deberías decir en su lugar no decreciente} y continua a izquierda, llamaremos medida de Lebesgue-Stieltjes $\mu_{u}$ a la medida inducida por $\mu_{0}$ mediante el procedimiento anterior. \index{medida! Lebesgue-Stieltjes}
+	Si $u:\rr \to \rr$ es creciente\comment{En lugar de  creciente deberías decir no decreciente, fijate por otras veces que aparece} y continua a izquierda, llamaremos medida de Lebesgue-Stieltjes $\mu_{u}$ a la medida inducida por $\mu_{0}$ mediante el procedimiento anterior. \index{medida! Lebesgue-Stieltjes}
 \end{defi}
 
 El siguiente teorema nos permite escribir cualquier medida finita sobre la $\sigma$-álgebra de Borel como una medida de Lebesgue-Stieltjes. La demostración es análoga a  \cite[Teorema  1.16]{folland}.
@@ -188,7 +205,9 @@ El siguiente teorema nos permite escribir cualquier medida finita sobre la $\sig
 
 \subsection{Medida de  Lebesgue-Stieltjes en un dominio acotado}
 
-\textcolor{blue}{ Por la \replaced{Proposición}{proposición} 1.2 de \cite{folland}, la familia de conjuntos $\mathcal{E}=\{(-\infty,x),\mid x\in\rr\}$ genera la $\sigma-$álgebra de Borel. Llamaremos $\mathscr{B}([a,b])$ \index[Simbolo]{$\mathscr{B}([a,b])$} a la $\sigma$-álgebra de Borel restringida al intervalo $[a,b]$, la cual  está generada por la familia de intervalos $\mathcal{E}\cap [a,b]=\left\lbrace [a,x) \mid x\leq b\right\rbrace $ \index[Simbolo]{$\mathcal{E}$}.}
+ 
+
+\textcolor{blue}{ Por la \replaced{Proposición}{proposición} 1.2 de \cite{folland}, la familia de conjuntos $\mathcal{E}=\{(-\infty,x),\mid x\in\rr\}$ genera la $\sigma-$álgebra de Borel. Llamaremos $\mathscr{B}([a,b])$ \index[Simbolo]{$\mathscr{B}([a,b])$} a la $\sigma$-álgebra de Borel restringida al intervalo $[a,b]$, la cual  está generada por la familia de intervalos $\mathcal{E}\cap [a,b]=\left\lbrace [a,x) \mid x\leq b\right\rbrace $ \index[Simbolo]{$\mathcal{E}$}.} \comment{Al principio de todo habías definido la $\sigma$-álgebra de Borel, no es necesario que la vuelvas a definir. La $\sigma$-álgebra de Borel es la que generan lo abiertos, en este caso los abiertos del $[0,T]$.} 
  
  
 Sea $u:[a,b]\to\rr$ una función  creciente y continua a izquierda, podemos extender su dominio a todos los números reales, de la siguiente forma:
@@ -212,7 +231,6 @@ $$\overline{u}(t)=\left\lbrace \begin{array}{rll}
 \begin{defi}
 	Sea $u:[a,b]\to\rr$ una función  creciente y continua a izquierda. Para $A\subset[a,b]$  definimos la medida de Lebesgue-Stieltjes $\mu_u$ por 
 	\begin{equation*}
- 
 	\mu_{u}(A)=\mu_{\overline{u}}(A)=\inf\left\lbrace \sum_{ j=1 }^n[\overline{u}(b_j)-\overline{u}(a_j)] \mid A\subset \bigcup_{j=1}^n[a_j,b_j)\right\rbrace\textrm{\todo{No le pondría el ínfimo, es la definición de medida que ya diste. Por otro lado había que considerar uniones infinitas.}}. 
  \end{equation*}
 \end{defi}
@@ -236,7 +254,7 @@ $$\overline{u}(t)=\left\lbrace \begin{array}{rll}
  
 \comment{Lo que viene, no sería más apropiado ponerlo en la sección siguiente?}
 \textcolor{blue}{Si en la definición \ref{def:premedida} tomamos a la función $\mu_0:\mathcal{A}\to \rr$, entonces la medida generada se llama medida con signo. \index{medida con signo}Veamos que para $f\in BV([a,b],\rr^n)$ la medida asociada a $f$, es una medida con signo.}
-
+\reversemarginpar
 \comment{Sería más enfático sobre, estuve rato para darme cuenta lo que querías decir. Te lo escribo en verde}
 
 \textcolor{green}{
@@ -245,7 +263,7 @@ $$\overline{u}(t)=\left\lbrace \begin{array}{rll}
 
 
 \begin{thm} \label{Thm:medidas}
-    	Sea $u\in BV([a,b],\rr)$ y continua a izquierda. Existe una medida de Borel con signo $\mu_{u}$, tal que $$\mu_{u}([a,b))=u(b)-u(a).$$  Para cualquier función $f$ $\mu_{u}$-integrable  y cualquier conjunto de Borel $A$, notaremos
+    	Sea $u\in BV([a,b],\rr)$ y continua a izquierda. Existe una medida de Borel con signo $\mu_{u}$, tal que $$\mu_{u}([a,b))=u(b)-u(a).\textrm{\todo{Calculo que lo que queres decir es que para todo $[a_1,b_1)\subset [a,b]$ vale que $\mu_{u}([a_1,b_1))=u(b_1)-u(a_1).$ }}$$  Para cualquier función $f$ $\mu_{u}$-integrable  y cualquier conjunto de Borel $A$, notaremos
 	$$\int_{A}f(s)\;d\mu_{u}(s)=\int_{A}f(s)\;du(s).$$  \index[Simbolo]{$du$}
 \end{thm}
 
@@ -259,20 +277,27 @@ $$\mu_{u}([a,b))=u(b)-u(a).$$
 \end{proof}
 
 
-\section{Medida de Lebesgue-Stieljes con signo}
+\section{Medida de Lebesgue-\replaced{Stieltjes}{Stieljes} con signo}\comment{El título dice medidas de Lebesgue-Stieltjes, sin embargo la sección no se refiere a esas medidas particularmente}
 
 Las siguientes definiciones y resultados están basados en \cite[Capitulo 3]{folland}.
 
 \begin{defi}
-	Diremos que la medida con signo $\nu$ es absolutamente continua \index{medida! absolutamente continua} respecto de la medida con signo $\mu$, y  notaremos $\nu\ll\mu$\index[Simbolo]{$\ll$}, si $\nu(A)=0$ cada vez que  $\mu(A)=0$.
+	Diremos que la medida con signo $\nu$ es absolutamente continua \index{medida! absolutamente continua} respecto de la medida con signo $\mu$, y  notaremos $\nu\ll\mu$\index[Simbolo]{$\ll$}, si $\nu(A)=0$ cada vez que  $\mu(A)=0$. \comment{ Me parece que o bien $\mu$ es medida (sin signo), o pones $|\mu|(A)=0$}
 \end{defi}
 
 
-\begin{defi}
-	Diremos que dos medidas con signo $\mu$ y $\eta$ son mutuamente singulares\index{medida! mutuamente singulares}, y  notaremos $\mu\perp \eta$,  si existen conjuntos $E,F\in\mathscr{B}([0,T])$ disjuntos tal que $E\cup F=[0,T]$, $\mu(E)=0$ y $\eta(F)=0$. \index[Simbolo]{$\perp$}
-\end{defi}
+{\color{green}
+ Esto te lo comento más en general, me refiero para toda la tesis, busca agregar un poco de texto para elazar los resultados.sino fijate por ejemplo aca tenes como cuatro definiciones y un teorema uno detras de otro. Por ejemplo en este punto podrías decir <<El siguiente concepto es en cierto sentido el opuesto del de la definición anterior.>> 
+}
 
 \begin{defi}
+	Diremos que dos medidas con signo $\mu$ y $\eta$ son mutuamente singulares\index{medida! mutuamente singulares}, y  notaremos $\mu\perp \eta$,  si existen conjuntos $E,F\in\mathscr{B}([0,T])$ disjuntos tal que $E\cup F=[0,T]$, $\mu(E)=0$ y $\eta(F)=0$. \index[Simbolo]{$\perp$}\normalmarginpar\comment{Aca también hay que o decir que son medidas o que son las variaciones las que cumplen eso por que si no aparecen otras cosas}
+\end{defi}
+
+{\color{green} Aca podrías decir <<Para aquel acostumbrado a trabajar con la medida de Lebesgue, le será natural que los conjuntos unitarios tienen medida cero. Sin embargo, hay que tener presente que este no es el caso para una medida de Borel en general. Vamos introducir una definición relativa a este punto  .>>}
+
+\newpage
+\begin{defi} \comment{Pasaría esta definición y la observación junto a la Definición \ref{def:pto_cont}, más aún podrías agregarlo dentro de aquella, como que tuviera dos partes, la primera esta y la segunda la que ya tiene}
 	Diremos que una medida con signo $\mu$ es continua \index{medida! continua} si para todo $t\in I$ $\mu(\{t\})=0$
 \end{defi}
 \begin{obs}\label{obs:medida continua}
@@ -284,14 +309,14 @@ Las siguientes definiciones y resultados están basados en \cite[Capitulo 3]{fol
  \end{equation*}
 \end{obs}
 
-\begin{defi}
+\begin{defi} \comment{No se porque definis esto aquí, me parece que no lo volves a mencionar en este capítulo. Si lo necesitas lo pondría al principio del capitulo, con el resto de las notaciones}
 	Diremos que un conjunto $A$ está compactamente incluido \index{compactamente incluido} en el conjunto $B$, si y sólo si $\overline{A}$ es compacto y $\overline{A}\subset B^\circ$. Lo notaremos como $A\Subset B$.
 	\index[Simbolo]{$\Subset$}
  \end{defi}
 \begin{thm}
     Sea $\mu$ una medida con signo, entonces existen $\mu^-$ y $\mu^+$ medidas positivas tal que $\mu=\mu^+-\mu^-$, y además $\mu^+\perp \mu^-$.\index[Simbolo]{$\mu^+$}\index[Simbolo]{$\mu^-$}
 \end{thm}
-El teorema anterior se denomina \textsc{descomposición de Jordan}\index{descomposición de Jordan} ver \cite[Capitulo 3.1]{folland}, y a las medidas $\mu^+$ y $\mu^-$ se las llama variación positiva\index{variación positiva} y negativa\index{variación negativa} de $\mu$, respectivamente.
+El teorema anterior se denomina \textsc{descomposición de Jordan}\index{descomposición de Jordan}\comment{No es común ni frecuente en la literatura enfatizar poniendo mayúsculas o small caps como usas aquí. Latex tiene un comando específico ``emph'' para enfatizar}  ver \cite[Capitulo 3.1]{folland}, y a las medidas $\mu^+$ y $\mu^-$ se las llama variación positiva\index{variación positiva} y negativa\index{variación negativa} de $\mu$, respectivamente. \normalmarginpar\comment{Enfatiza los conceptos que definis. En el glosario ingresa el concepto de variación y lo de positiva y negativa como subconceptos}\reversemarginpar
 
 \begin{defi}
     Sea $\mu$ una medida con signo. Definimos la variación total de $\mu$, como 
@@ -302,7 +327,7 @@ El teorema anterior se denomina \textsc{descomposición de Jordan}\index{descomp
 
 
 \begin{obs}
- Sea $\mu$ una medida con signo, entonces valen las siguientes propiedades: \label{obs:medida}
+ Sea $\mu$ una medida con signo, entonces valen las siguientes propiedades: \label{obs:medida} \comment{la primera y la última son bastante inmediatas, a la segunda y tercera le buscaría referencias}
  \begin{itemize}
  \item $|\mu|$ es una medida de Borel positiva.
      \item Para cualquier conjunto $E$ $\mu$-medible,  se verifica
@@ -315,28 +340,33 @@ El teorema anterior se denomina \textsc{descomposición de Jordan}\index{descomp
  \item $ \mu^{\pm}\ll |\mu|$.
  \end{itemize}
 \end{obs}
-
+\added{Recordemos a los bien conocidos espacios $L^p$.}
 \begin{defi} \index[Simbolo]{$L^{p}([0,T],\mu)$}
 	Sean $\mu$ una medida de Borel positiva  y  $u:[0,T]\to \rr^n$ una función $\mu$-medible. Diremos que:
 	\begin{enumerate}
 		\item [a)] $u\in L^p([0,T],\mu)$   con $1\leq p<\infty$ si 
 		\index[Simbolo]{$\lVert u\rVert_{L^p(\mu)}$} $$\left\| u\right\|_{L^p(\mu)} =\left[ \int_{[0,T)}|u(t)|^p d\mu\right] ^{1/p}<\infty.$$
-		En caso de que el dominio de $u$ esté sobreentendido notaremos $u\in L^p(\mu)$ y cuando $\mu$ sea la medida de Lebesgue se denotara simplemente $L^p([0,T])$.
+		En caso de que el dominio de $u$ esté \replaced{sobrentendido}{sobreentendido} notaremos $u\in L^p(\mu)$ y cuando $\mu$ sea la medida de Lebesgue se \replaced{denotará}{denotara} simplemente $L^p([0,T])$.
   
-		\item [b)] Sea $\mu$ una medida de Borel positiva. Diremos que  $u\in L^\infty([0,T],\mu)$ \index[Simbolo]{$L^\infty([0,T],\mu)$}si \index[Simbolo]{$\lVert u \rVert_{L^\infty(\mu)}$}
+		\item [b)] Sea $\mu$ una medida de Borel positiva.\comment{Que $\mu$ era una medida de Borel positiva estaba puesto como hipotésis general al comienzo de la definición} Diremos que  $u\in L^\infty([0,T],\mu)$ \index[Simbolo]{$L^\infty([0,T],\mu)$}si \index[Simbolo]{$\lVert u \rVert_{L^\infty(\mu)}$}
 		$$\left\| u\right\|_{L^\infty(\mu)}=\inf\{M \mid |u(t)|<M, \text{para } \mu \text{- c.t.p.}\}  <\infty.$$
 		
 	\end{enumerate}
 \end{defi}
+
+
+
 \begin{defi}
-	Sea $\mu$ una medida de Borel con signo, entonces definimos $L^p(\mu)=L^p(|\mu|)$.
+	Sea $\mu$ una medida de Borel con signo, entonces definimos $L^p(\mu)=L^p(|\mu|)$. \comment{Para mi esta definición no hace falta, llegado el momento se habla de $L^p(|\mu|)$ en lugar de $L^p(\mu)$.}  
 \end{defi}
 
+{\color{green}
+Dadas dos medidas, el siguiente célebre teorema nos muestra  como podemos descomponer una de ellas en suma de dos medidas una absolutamente continua y otra mutuamente singular respecto a la segunda. Además  nos permite relacionar integrales entre medidas distintas. 
+}
 
 
-
-\begin{thm}[Radon-Nikodyn]\label{TL-R-N}
-	Sea $\rho$ una medida finita con signo y $\mu$ una medida positiva finita en el espacio $\left( [0,T], \mathscr{B}([0,T])\right) $. Entonces existen $\lambda$ y $\nu$ medidas finitas con signo tal que 
+\begin{thm}[Radon-\replaced{Nikodym}{Nikodyn}]\label{TL-R-N}
+	Sea $\rho$ una medida finita con signo\comment{Hay que revisar la definición, pero en general las medidas con signo son siempre finitas, porque con estas medidas de admitir que pueden tomar valores infinitos  puede presentarse la indeterminación $\infty-\infty$, que con las medidas positivas no pasa} y $\mu$ una medida positiva finita en el espacio $\left( [0,T], \mathscr{B}([0,T])\right) $. Entonces existen $\lambda$ y $\nu$ medidas finitas con signo tal que 
 	\begin{equation*}
 		\lambda\perp\mu, \quad \nu\ll\mu  \quad \text{ y }\quad \rho=\lambda+\nu.
 	\end{equation*}
@@ -345,15 +375,15 @@ Más aún, existe una función $h:[0,T]\to\rr$ $\mu$-integrable tal que para tod
 	\nu(A)=\int_A h(s)\;d\mu(s).
 \end{equation*}
 \end{thm}
-\textcolor{blue}{A la función $h$ se la suele llamar la derivada de $\nu$ respecto la medida $\mu$, y se nota  $\dfrac{d\nu}{d\mu}$.
-La siguiente proposición es consecuencia del teorema de \ref{TL-R-N} y está demostrado en \cite[Proposición 3.9]{folland}.}
+\textcolor{blue}{A la función $h$ se la suele llamar la derivada \added{de Radon-Nikodym} de  $\nu$ respecto \added{a} la medida $\mu$, y se \replaced{denota}{nota}  $\dfrac{d\nu}{d\mu}$.
+\normalmarginpar\comment{punto y aparte}La siguiente proposición es consecuencia del \replaced{Teorema}{teorema de} \ref{TL-R-N} y está \replaced{demostrada}{demostrado} en \cite[Proposición 3.9]{folland}.}
 
 
 
 
 \begin{prop}
     \label{ob1}
-	Sean $\mu$ una medida de Borel con signo y finita, y  $f\in L^1(\mu)$. Si   $$\nu(A)=\int_A f\; d\mu,$$ entonces para toda función $g\in L^1(\nu)$ vale que $gf\in L^1(\mu)$ y 
+	Sean $\mu$ una medida de Borel con signo \deleted{ y finita,} y  \replaced{ $f\in L^1(|\mu|)$}{$f\in L^1(\mu)$}. Si \added{definimos}  $$\nu(A)=\int_A f\; d\mu,$$ entonces \added{$\nu$ es una medida con signo absolutamente continua respecto a $|\mu|$ y} para toda función \replaced{$g\in L^1(|\nu|)$}{$g\in L^1(\nu)$} vale que \replaced{$gf\in L^1(|\mu|)$}{$gf\in L^1(\mu)$} y 
 	\begin{equation*}
 	    \int_A g(s)\;d\nu=\int_Ag(s)f(s)\;d\mu.
 	\end{equation*}
@@ -361,14 +391,17 @@ La siguiente proposición es consecuencia del teorema de \ref{TL-R-N} y está de
 \end{prop}
 
 
+{\color{green} El siguiente resultado lo  necesitaremos usar más adelante. Si bien es elemental, no encontramos referencias para el mismo. Por este motivo incluímos una breve demostración.
+}
 
-\begin{lem}\label{obs3}
-	Supongamos que  $\nu\ll\mu$ y sea $\mu^*$ una medida tal que $\nu(A)\leq \mu^*(A)$, entonces para toda función $\psi\in L^1(\nu)$ vale que 
+
+\begin{lem}\label{obs3} \comment{Tres cosas: 1)la medida $\mu$ no juega ningún rol en el teorema ni en su demostración. Para mi podrías sacarla y llamar $\mu$ a $\mu^*$ 2) que tipo de medidas son $\nu$ y $\mu^*$? 3) El resultado, como está escrito, no vale. Sale si $\psi\geq 0$ Fijate que en la demostración  si uno de los $a_i$ fuera negativo una desigualdad se te invertiría}
+	Supongamos que  $\nu\ll\mu$ y sea $\mu^*$ una medida tal que $\nu(A)\leq \mu^*(A)$, entonces para toda función \added{no negativa} $\psi\in L^1(\nu)$  vale que 
 	$$\int_A\psi(r)\;d\nu(r)\leq \int_A\psi(r)\;d\mu^*.$$
 	
 \end{lem}
 \begin{proof}[Dem.]
- Vamos a  tomar el conjunto $A$ como un intervalo abierto $I$.
+ Vamos a  tomar el conjunto $A$ como un intervalo abierto $I$.\normalmarginpar\comment{Me parece que no usas  en ningun momento que $I$ sea un intervalo, con la misma demostración te sale para cualquier $A$}
  
 \begin{itemize}
 	\item Si $\psi$ es una función característica, es decir, $\psi(t)=X_E(t)$. Tenemos
@@ -376,10 +409,10 @@ La siguiente proposición es consecuencia del teorema de \ref{TL-R-N} y está de
 		\int_I \psi(r) \;d\nu(r)=\int_{I\cap E} \;d\nu(r)=\nu \left(I\cap E\right)\leq \mu^*\left(I\cap E\right)\\
 		\leq\int_{I\cap E} \;d\mu^*(r)=\int_I\psi(r) \;d\mu^*(r).
 	\end{multline*}
-\item Si $\psi$ es una función simple, dada por $\psi(t)=\displaystyle\sum_{i=1}^{m}a_iX_{E_i}(t)$ entonces
+\item Si $\psi$ es una función simple, dada por $\psi(t)=\displaystyle\sum_{i=1}^{m}a_iX_{E_i}(t)$, $a_i\geq 0$, entonces
 \begin{equation*}
 \begin{split}
-	\int_I \psi(r)\; d\nu(r)&=\sum_{i=1}^{m}\left( a_i\int_IX_{E_i}(r) \;d\nu(r)\right) \\ &\leq
+	\int_I \psi(r)\; d\nu(r)&=\sum_{i=1}^{m}\left( a_i\int_IX_{E_i}(r) \;d\nu(r)\right) \\ &\leq \textrm{\todo{Esta desigualdad se te invertiría si $a_i<0$}}
 	\sum_{i=1}^{m}a_i\left( \int_IX_{E_i}(r) \;d\mu^*(r)\right) =\int_I \psi(r)\; d\mu^*(r).
  \end{split}
 \end{equation*}
@@ -390,11 +423,15 @@ La siguiente proposición es consecuencia del teorema de \ref{TL-R-N} y está de
 	&\leq \lim\limits_{k\to\infty}\int_I f_k(r)\;d\mu^*(r)=\int_I\psi(r)\;d\mu^*(r).
  \end{split}
 \end{equation*}
-	\item Si $\psi$ es cualquier función integrable, entonces se puede descomponer como diferencia de dos funciones positivas, es decir $\psi=\psi^+-\psi^-$  y por el ítem anterior satisface  que 
-$$\int_I\psi(r)\;d\nu(r)\leq \int_I\psi(r)\;d\mu^*.$$	
-\end{itemize}
-Luego, si se verifica para cualquier intervalo  abierto $I$ entonces,  como  este tipo de conjuntos generan la $\sigma$-álgebra de Borel, se satisface para cualquier conjunto boreliano $A$.
+\comment{La demostración terminaría aca}
 
+	\item \deleted{Si $\psi$ es cualquier función integrable, entonces se puede descomponer como diferencia de dos funciones positivas, es decir $\psi=\psi^+-\psi^-$  y por el ítem anterior satisface  que }
+$$\cancel{\int_I\psi(r)\;d\nu(r)\leq \int_I\psi(r)\;d\mu^*.}$$	
+
+\end{itemize}
+
+\deleted{Luego, si se verifica para cualquier intervalo  abierto $I$ entonces,  como  este tipo de conjuntos generan la $\sigma$-álgebra de Borel, se satisface para cualquier conjunto boreliano $A$.
+}
 
 \end{proof} 
 
@@ -403,10 +440,12 @@ Luego, si se verifica para cualquier intervalo  abierto $I$ entonces,  como  est
 
 
 
+{\color{green}
+Como veremos más adelante el conjunto de puntos donde una medida es discontinua jugará un rol importante en la Teoría de Integración.
+}
 
-
-\begin{defi}
-	Sea $\mu$ una medida con signo. Llamaremos $D_{\mu}$ o simplemente $D$, al conjunto de los puntos de discontinuidad \index{punto de discontinidad} de $\mu$, es decir, 
+\begin{defi}\label{def:pto_cont}
+	Sea $\mu$ una medida con signo. \comment{Aca y en enunciados previos, sería bueno que aclares donde estan definidas estas medidas} Llamaremos $D_{\mu}$ o simplemente $D$, al conjunto de los puntos de discontinuidad \index{punto de discontinidad} de $\mu$, es decir, 
 	$$D=\{t \in [0,T]  \mid  \mu(\{t\})\neq 0\}.$$\index[Simbolo]{$D$}
 \end{defi}
 
