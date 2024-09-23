@@ -13,22 +13,37 @@ Los problemas impulsivos pueden pensarse como problemas donde intervienen medida
 \begin{equation*}
 	d(x')\textrm{\todo{No son necesarios los paréntesis}}=\sum_{k=1}^{r}\dfrac{I_k}{m}\delta_{t_k}.
 \end{equation*}
-Si  realizamos la sustitución $v=x'$ tendremos el sistema\comment{No es una forma muy habitual de denotar un sistema, tengo miedo que no se entienda, te sugiero lo verde (use el paquete empheq que es bastante comodo}
+Si  realizamos la sustitución $v=x'$ tendremos el sistema\comment{No es una forma muy habitual de denotar un sistema, tengo miedo que no se entienda, te sugiero lo verde (use el paquete \texttt{ empheq} que es bastante comodo para escribir ecuaciones}
 
 {\color{green}
-\begin{empheq}[left=\empheqlbrace]{align}
+\begin{empheq}[left=\empheqlbrace]{equation}\label{eq:part_libre+impulsos}
+ \begin{aligned}
   x' &=v  d\lambda,& \\
       v'& =\frac{1}{m} \sum_{k=1}^{r}I_k\delta_{t_k} .
+      \end{aligned}
   \end{empheq}
-}
+
+Podemos re-escribir este sistema como un producto matricial, al menos de un punto de vista formal, de una función a valores matriciales  $f$ y una medida vectorial $\mu$. Concretamente poniendo 
+$$f(x,v)=\begin{pmatrix}
+          0 & v \\
+          \frac{1}{m} & 0 
+         \end{pmatrix},\quad \mu=\begin{pmatrix} d\lambda \\ \sum_{k=1}^{r}I_k\delta_{t_k} \end{pmatrix}\quad\text{y} \quad \varphi=\begin{pmatrix} x \\ v\end{pmatrix}
+$$
+entonces el sistema \eqref{eq:part_libre+impulsos} se escribe como  $\varphi'=f(t,\varphi)d\mu$.
+
+
+
+  
+  }
+
 
 
 \begin{equation*}
 	\left( x',v'\right) =\left( v ,\dfrac{1}{m}\right) \cdot \left( d\lambda, \displaystyle\sum_{k=1}^{r}I_k\delta_{t_k}\right) , 
 \end{equation*}
-donde el término de la derecha del producto escalar es una medida vectorial.  En \cite{distel} se define medida vectorial para espacios de Banach $X$  \textcolor{red}{y?...no sé si este comentario es conveniente aquí...}. \comment{Para mi tenes que poner todo lo que tenes sobre medidas vectoriales en la sección siguiente y pasarla al capítuo anterior que debería ser de todos los prerequisitos. Empezaría recordando la definición del concepto de meddia vectorial, porque es algo que no se si todos conocen. Es menos familiar que el concepto de variación acotada} Cuando $X$ es un espacio euclídeo  $m$-dimensional, una medida vectorial se puede pensar como un vector de medidas, es decir $\nu=(\nu_1,\nu_2,...,\nu_m)$ donde cada $\nu_i$ es una medida de Borel con signo.  La variación total de una medida vectorial $\nu$ se define para un conjunto de Borel $E$, (ver definición 4 de \cite{distel}, tomando $\rr^m$ con la norma de $l^1$) como 
+donde el término de la derecha del producto escalar es una medida vectorial.  En \cite{distel} se define medida vectorial para espacios de Banach $X$  \textcolor{red}{y?...no sé si este comentario es conveniente aquí...}. \comment{Para mi tenes que poner todo lo que tenes sobre medidas vectoriales desde aca y lo de la sección siguiente  en el capítuo anterior de todos los prerequisitos.} \normalmarginpar\comment{ Empezaría recordando la definición del concepto de meddia vectorial. Formulala en un espacio de Banach y después particularizala a $\rr^m$ y la norma del caminante} Cuando $X$ es un espacio euclídeo  $m$-dimensional, una medida vectorial se puede pensar como un vector de medidas, es decir $\nu=(\nu_1,\nu_2,...,\nu_m)$ donde cada $\nu_i$ es una medida de Borel con signo.  La variación total de una medida vectorial $\nu$ se define para un conjunto de Borel $E$, (ver definición 4 de \cite{distel}, tomando $\rr^m$ con la norma de $l^1$) como 
  
-$$||\nu||(E)=sup\left\{ \sum_{j=1}^r |\nu(E_j)| _1 \text{ donde } \bigcup_{j=1}^rE_j=E\right\},$$
+$$||\nu||(E)=sup\textrm{\todo{Los supremos e ínfimos se escriben con el comando \texttt{\textbackslash sup} y \texttt{\textbackslash inf}. Las normas con \textbackslash \texttt{|}. Produce un resultado más agradable que dos palitos juntos $\|\nu\|$- $ ||\nu||$. }}\left\{ \sum_{j=1}^r |\nu(E_j)| _1 \text{ donde } \bigcup_{j=1}^rE_j=E\right\},$$
 teniendo en cuenta que $|\nu(E_j)|_1=\displaystyle\sum_{i=1}^m|\nu_i(E_j)|$.
 
 En esta sección mostraremos que las soluciones a ecuaciones diferenciales donde intervienen medidas vectoriales son también soluciones a ecuaciones donde interviene una medida de Borel positiva.
@@ -36,7 +51,8 @@ En esta sección mostraremos que las soluciones a ecuaciones diferenciales donde
 \subsection{Medidas vectoriales}
 
 
-El siguiente resultado nos permite expresar la variación total de una medida vectorial de una manera simple.
+El siguiente resultado nos permite expresar la variación total de una medida vectorial de una manera simple. \comment{Acota que si bien el resultado es bastante esperable no se encontró su enunciado y demostración en la literatura y por ese motivo  incluis la demostración (de paso así decís que la demostración es de tu autoría  
+ )} 
 \begin{lem} \label{lem:medida vectorial}
     Sea $\nu=(\nu_1,\nu_2,...,\nu_m)$ una medida vectorial, entonces 
     \begin{equation}
@@ -47,15 +63,15 @@ El siguiente resultado nos permite expresar la variación total de una medida ve
     Por  \eqref{obs:medida} y como $\displaystyle|\nu(E)|_1= \sum_{i=1}^{m}|\nu_i(E)|$, tenemos
     \begin{equation*}
     \begin{split}
-       \sum_{i=1}^{m} |\nu_i|(E)&=\sum_{i=1}^{m} \left[sup\left\{ \sum_{j=1}^r |\nu_i(E_j)| \mid \bigcup_{j=1}^rE_j=E\right\} \right]\\
+       \sum_{i=1}^{m} |\nu_i|(E)&=\sum_{i=1}^{m} \left[sup\left\{ \sum_{j=1}^r |\nu_i(E_j)| \Bigg| \textrm{\todo{Para hacer legible la fórmula me parece que hay que hacer la barra del ``tal que'' de distinto tamaño que la de las normas. Podes usar el comando \texttt{\textbackslash Bigg|} Fijate como lo hice aca}} \bigcup_{j=1}^rE_j=E\right\} \right]\\
        \sum_{i=1}^{m} |\nu_i|(E) &\geq sup\left\{ \sum_{i=1}^{m} \sum_{j=1}^r |\nu_i(E_j)| \mid \bigcup_{j=1}^rE_j=E \right\}\\
        \sum_{i=1}^{m} |\nu_i|(E) &\geq sup\left\{  \sum_{j=1}^r \sum_{i=1}^{m} |\nu_i(E_j)| \mid \bigcup_{j=1}^rE_j=E \right\}\\
        \sum_{i=1}^{m} |\nu_i|(E) &\geq ||\nu||(E).
     \end{split}
     \end{equation*}
-    \textcolor{red}{En la frase que sigue se mezcla la descomposición con las componentes (o como se llamen...) de la descomposición.}
+    \textcolor{red}{En la frase que sigue se mezcla la descomposición con las componentes (o como se llamen...) de la descomposición.\comment{No entiendo que queres decir}}
     
-Sea $E_i^{+}$ y $E_i^-$  la descomposición de Hahn del conjunto $E$ respecto de la medida $\nu_i$ (ver \cite{folland}), entonces \begin{equation}\label{eq:med_vec 1}
+\replaced{Para demostrar la desigualdad que resta, sea}{Sea} $E_i^{+}$ y $E_i^-$  la descomposición de Hahn del conjunto $E$ respecto de la medida $\nu_i$ (ver \cite{folland}), entonces \begin{equation}\label{eq:med_vec 1}
     |\nu_i|(E)=\nu_i(E_i^+)-\nu_i(E_i^-).
 \end{equation}    
  Sea $I=\{\alpha\in\rr^m,  \; | \: \alpha_i\in\{+,-\} \}$ y para cada $\alpha\in I$  definimos  $F_\alpha=\displaystyle\bigcap_{i=1}^mE_i^{\alpha_i}$. 
@@ -78,7 +94,7 @@ Para $i=1,...,m$
   \begin{equation*}
       \begin{split}
         \bigcup_{\substack{\alpha\in I\\ \alpha_i=+}}F_\alpha&=\bigcup_{\substack{\alpha\in I\\ \alpha_i=+}}\left( E_1^{\alpha_1}\cap..\cap  E_i^+\cap...\cap E_m^{\alpha_m} \right)\\
-        &=E_i^+\cap \left(\bigcup_{j=1}^m E_j^+\cup E_j^- \right)=E_i^+\cap E=E_i^+,
+        &=E_i^+\cap \left(\bigcup_{j=1}^m E_j^+\cup E_j^- \right)\textrm{\todo{estas igualdades me parecen ciertas, pero no entiendo porque escribis esta}}=E_i^+\cap E=E_i^+,
       \end{split}
   \end{equation*}
   y de igual manera 
@@ -88,7 +104,7 @@ Para $i=1,...,m$
   \end{equation*}
 Ahora reemplazamos en \eqref{eq:med_vec 1}, tenemos que 
 \begin{equation*}
-  	|\nu_i|(E)=\nu_i \left( \bigcup_{\substack{\alpha\in I\\ \alpha_i=+}}F_\alpha\right) + \nu_i \left( \bigcup_{\substack{\alpha\in I\\ \alpha_i=-}}F_\alpha\right)= \sum_{\substack{\alpha\in I\\ \alpha_i=+}}\nu_i(F_\alpha)-\sum_{\substack{\alpha\in I\\ \alpha_i=-}}\nu_i(F_\alpha).
+  	|\nu_i|(E)=\nu_i \left( \bigcup_{\substack{\alpha\in I\\ \alpha_i=+}}F_\alpha\right) +\textrm{\todo{Aca me parece que va $-$}} \nu_i \left( \bigcup_{\substack{\alpha\in I\\ \alpha_i=-}}F_\alpha\right)= \sum_{\substack{\alpha\in I\\ \alpha_i=+}}\nu_i(F_\alpha)-\sum_{\substack{\alpha\in I\\ \alpha_i=-}}\nu_i(F_\alpha).
   \end{equation*}
   
   
@@ -104,13 +120,13 @@ Ahora reemplazamos en \eqref{eq:med_vec 1}, tenemos que
   \end{equation*}
   Por lo tanto
   \begin{equation*}
-  	\sum_{i=1}^{m}|\nu_i|(E)= \sum_{\substack{\alpha\in I}}|\nu(F_\alpha)|\leq ||\nu||(E).
+  	\sum_{i=1}^{m}|\nu_i|(E)= \sum_{\substack{\alpha\in I}}|\nu(F_\alpha)|\textrm{\todo{Esto antes lo escribiste asi $|\nu(F_\alpha)|_1$}}\leq ||\nu||(E).
   \end{equation*}
   
 \end{proof}
 \begin{obs}
 
-Por \eqref{obs:medida}, $\nu_i\ll |\nu_i|$ y por el lema \ref{lem:medida vectorial} cada $|\nu_i|$ es absolutamente continua respecto a la medida $||\nu||$. Entonces para toda $i=1,..., m$ vale que $\nu_i\ll ||\nu||$.\label{obs:R-D}	Por el teorema Radon-Nikodyn \eqref{TL-R-N}, existe $h_i\in L^1(||\nu||) $ tal que para todo conjunto de Borel $A$ se puede escribir
+Por \eqref{obs:medida}, $\nu_i\ll |\nu_i|$ y por el \replaced{Lema}{lema} \ref{lem:medida vectorial} cada $|\nu_i|$ es absolutamente continua respecto a la medida $||\nu||$. Entonces para toda $i=1,..., m$ vale que $\nu_i\ll ||\nu||$.\label{obs:R-D}	Por el teorema Radon-Nikodyn \eqref{TL-R-N}, existe $h_i\in L^1(||\nu||) $ tal que para todo conjunto de Borel $A$ se puede escribir
 
 	$$\nu_i(A)=\int_A h_i(s)\;d||\nu||.$$
  \end{obs}
@@ -121,13 +137,14 @@ Sea  $\nu$ una medida vectorial, entonces  existe $ H\in L^1(\rr^m,||\nu||)$ tal
 	\end{equation*}
  \end{prop}
 
+ \newpage
  
 \begin{proof}[Dem.]
-    El resultado se obtiene por aplicación de la Observación \eqref{obs:R-D}.
+    El resultado se obtiene por aplicación de la Observación \eqref{obs:R-D}. \comment{Al menos diría que $H=(h_1,\ldots,h_m)$ y que,  como en el caso de medidas escalares, la función $H$ es la Derivada de Radon-Nikodym de $\nu$ respecto a $\|\nu \|$ y que se denotará $\frac{d\nu}{d\|\nu\|}$}
 \end{proof}     
 
 	
-\subsection{Soluciones a ecuaciones con medidas vectoriales}
+\subsection{Soluciones a ecuaciones con medidas vectoriales}\reversemarginpar \comment{Te sugiero elevar el rango de esto a sección, además te pedi llevar la sección que lo contiene al capítulo anterior} 
 
 Sea $F:[0,T]\times\rr^n\to \rr^{n\times m}$ con $F(t,x)$  suficientemente buena \textcolor{blue}{ o continua y  localmente Lipschitz con respecto a $x$}, y $\nu$ una medida vectorial con valores en   $\rr^m$ \index{medida! vectorial}.
 Vamos a considerar la ecuación 
@@ -136,21 +153,24 @@ Vamos a considerar la ecuación
 d\varphi(t)=F(t,\varphi(t))d\nu . 
 \end{equation}
 \begin{defi}\label{def-sol}
-	Una solución de \eqref{eq:8} es una función $\varphi\in BV([0,T],\rr^n)$ y continua a izquierda, tal que  
+	Una solución de \eqref{eq:8} es una función $\varphi\in BV([0,T],\rr^n)$\reversemarginpar\comment{Me parece que funciones de variación acotada a valores vectoriales nunca fue definido} y continua a izquierda, tal que  
 \begin{equation}\label{eq:9}
-    \int_{[0,t)}d\varphi=\varphi(t)-\varphi(0)=\int_{[0,t)}F(s,\varphi(s))\; d\nu.
+    \int_{[0,t)}d\varphi=\varphi(t)-\varphi(0)=\int_{[0,t)}F(s,\varphi(s))\; d\nu.\normalmarginpar\textrm{\todo{Te conviene reemplazar en la integral el intervalo $[0,t)$ por $A$ y decir que la igualdad vale para todo medible Borel $A$}}
 \end{equation}
 \end{defi}
 
-\begin{thm}\label{thm:m_equivalente}
+{\color{green} El Teorema de Radon-Nikodym nos permite convertir un problema con medidas vectoriales en uno con medidas postivas.}
+
+
+\begin{thm}\label{thm:m_equivalente} \normalmarginpar\comment{Me parece conveniente que recuerdes <<Sea $H$ como en ..... y $\mu$ bla bla>>}
 Una solución de \eqref{eq:8} es también solución de    
 \begin{equation}\label{eq:10}
 	d\varphi=f(t,\varphi(t))d\mu,
 \end{equation} 
-donde $f=F[H]^*:[0,T]\times\rr^n\to \rr^n$ y  $\mu$ es una medida de Borel positiva. 
+donde $f=F[H]^*:[0,T]\times\rr^n\to \rr^n$ \reversemarginpar \comment{¿Qué es $H^*$?¿La transpuesta? ¿Es lo mismo que el $H^\tau$ de más abajo? no es usual el símbolo $\tau$ para la transpuesta.  No se por qué hay necesidad de transponer} y  $\mu$ es una medida de Borel positiva. 
 \end{thm}
 \begin{proof}[Dem.]
-    De la proposición \eqref{prop:medida vectorial} se tiene que existe $H:\rr^m\to\rr^n$ en  $L^1(||\nu||)$ tal que  podemos escribir la definición \eqref{eq:9} como 
+    De la \replaced{Proposición}{proposición} \eqref{prop:medida vectorial} \normalmarginpar\comment{Aca me parece que también necesitas la  Proposición \ref{ob1}} se tiene que existe $H:\rr^m\to\rr^n$ en  $L^1(||\nu||)$ tal que  podemos escribir la definición \eqref{eq:9} como 
 
     
     \begin{equation*}
@@ -161,9 +181,9 @@ donde $f=F[H]^*:[0,T]\times\rr^n\to \rr^n$ y  $\mu$ es una medida de Borel posit
 
 
 
-De esta manera, podemos decir que la solución de \eqref{eq:8}, es también solución de un problema donde la medida que interviene no es vectorial. En efecto, si llamamos $f(t,x)=F(t,x)[H(t)]^\tau$ y $\mu=||\nu||$ tenemos 
+De esta manera, podemos decir que \replaced{una}{la} \comment{\eqref{eq:8} no te determina una sola solución como para decir <<la solución>>} solución de \eqref{eq:8}, es también solución de un problema donde la medida que interviene no es vectorial. En efecto, si llamamos $f(t,x)=F(t,x)[H(t)]^\tau$ y $\mu=||\nu||$ tenemos 
 \begin{equation*}
-	d\varphi=f(t,\varphi(t))d\mu,
+	d\varphi=f(t,\varphi(t))d\mu,\reversemarginpar\text{\todo{Fijate que volves a reescribir la misma ecuación que tenes escrita y numerada un poco más arriba}}
 \end{equation*} 
 donde $f:[0,T]\times\rr^n\to \rr^n$ y  $\mu$ es una medida de Borel positiva.
 \end{proof}
@@ -175,38 +195,51 @@ En el siguiente ejemplo mostramos cómo una solución a problemas impulsivos del
  \begin{example}
  	Sea $\varphi:[0,T]\to\rr$ solución de la ecuación impulsiva
  	\begin{equation}
- 		d\varphi=F(t,\varphi)+\sum_{k=1}^rg_k(t)\;d\delta_{t_k},\label{eq:ejemplo 1}
+ 		d\varphi=F(t,\varphi)+\sum_{k=1}^rg_k(t)\;d\delta_{t_k},\label{eq:ejemplo 1} \text{\todo{Me parece que en una integral $\int g_k(t)\;d\delta_{t_k}$ el único valor que importa de $g(t)$ es $g(t_k)$, porque $\rr-\{t_k\}$ tiene $\delta_{t_k}$ medida cero. Luego si reemplazas $g_k(t)$ por $I_k:=g_k(t_k)$ el problema es el mismo  }}
  	\end{equation}
   donde $g_i:[0,T]\to \rr$ y $F$ son funciones continuas. Cuando $F$ no esté acompañada de ninguna medida  vamos a convenir que se trata de la medida de Lebesgue $d\lambda$. A la expresión anterior  podemos escribirla de manera vectorial como
 
 
   
  	\begin{equation*}
-	d\varphi=\left( F(t,\varphi(t)),g_1(t),...,g_r(t)\right)  \left( d\lambda, d\delta_{t_1},...,d\delta_{t_r}\right)^\tau. 
+	d\varphi=\left( F(t,\varphi(t)),g_1(t),...,g_r(t)\right)  \left( d\lambda, d\delta_{t_1},...,d\delta_{t_r}\right)^\tau. \reversemarginpar\textrm{\todo{Ojo con los productos entre vectores, pues pusiste productos con significados diferenctes a lo largo de la tesis. }}
 \end{equation*} 
- Si llamamos $\nu=(\lambda,\delta_{t_1},...,\delta_{t_r})$ y aplicamos el teorema \eqref{thm:m_equivalente} tenemos que  $||\nu||=\displaystyle\lambda+\sum_{k=1}^r\delta_{t_k}$. Como
+
+\newpage
+ Si llamamos $\nu=(\lambda,\delta_{t_1},...,\delta_{t_r})$ y aplicamos el \replaced{Teorema}{teorema} \eqref{thm:m_equivalente} \reversemarginpar \comment{Para citar teoremas se usa el comando \texttt{\textbackslash ref} en lugar del \texttt{\textbackslash eqref} que es específico para ecuaciones. Ahora bien, para mi la conclusión que sigue es más consecuencia del Lema \ref{lem:medida vectorial} que del Teorema  \eqref{thm:m_equivalente} }  que \normalmarginpar  $||\nu||=\displaystyle\lambda+\sum_{k=1}^r\delta_{t_k}$. 
+ 
+ \normalmarginpar \highlight[comment={para que se entienda más lo que vas a hacer}]{Vamos a calcular la derivada de Radon-Nikodym $d\nu/d\|\nu\|$.} Como
 $$\delta_{t_k}(A)=\int_A  \chi_{\{t_k\}}\; d||\nu||$$
 y
-$$\lambda(A)=\int_A \chi_{A-\{t_1,..t_r\}}\; d||\nu||,$$
-entonces, notando $H(t)=(1,\chi_{\{t_1\}},..,\chi_{\{t_r\}})$  la solución de \eqref{eq:ejemplo 1} es también solución de la ecuación 
+$$\lambda(A)=\int_A \added{1-\chi_{\{t_1,..t_r\}}} \textcolor{red}{\cancel{\chi_{A-\{t_1,..t_r\}}}}\; d||\nu||,$$
+entonces
+{\color{green}
+$$\frac{d\nu}{d\|\nu\|}=(1-\chi_{\{t_1,..t_r\}},\chi_{\{t_1\}},..,\chi_{\{t_r\}}).$$
+}
+\replaced{Consecuentemente, una} {notando $H(t)=(1,\chi_{\{t_1\}},..,\chi_{\{t_r\}})$  la} solución de \eqref{eq:ejemplo 1} es también solución de la ecuación 
 
  	\begin{equation*}
-	d\varphi=\left(F(t,x),g_1(t),...,g_r(t)\right)H(t)^\tau \; d||\nu||.
+	d\varphi=\left(F(t,x),g_1(t),...,g_r(t)\right)\added{\left[\frac{d\nu}{d\|\nu\|}\right]^\tau}\textcolor{red}{\cancel{H(t)^\tau}} \; d||\nu||.
 \end{equation*} 
-
- 
-
-Si escribimos $f(t,x)=(F(t,x),g_1(t),...,g_r(t))H(t)^\tau$ y $||\nu||=\mu$ entonces  $\varphi$ es solución de \eqref{eq:10}.
+\replaced{que es una ecuación de la forma de la ecuación}{Si escribimos $f(t,x)=(F(t,x),g_1(t),...,g_r(t))H(t)^\tau$ y $||\nu||=\mu$ entonces  $\varphi$ es solución de} \eqref{eq:10}.
 
  \end{example}
 %%%%%%%%%%%%%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%% otras soluciones %%%%%%%%%%%%%%%%%
 
-En la definición  \ref{def-sol}, dijimos que una solución de la MDE %\eqref{eq:10} 
+En la definición  \ref{def-sol}, dijimos que una solución de la MDE \added{\eqref{eq:10}}
+{\color{red}
 \begin{equation*}
-	d\varphi=f(t,\varphi(t))d\mu,
-\end{equation*} 
-es una función $\varphi\in BV([0,T],\rr^n)$ y continua a izquierda, que cumple con la ecuación integral \eqref{eq:9}. Sin embargo, no es la única \textcolor{blue}{forma de definir  solución} solución que podemos obtener para esta ecuación. Dependiendo de  a qué   consideramos solución, ésta puede variar. Si en la construcción de la medida de Lebesgue-Stieltjes (hecha en el capítulo $2$) tomamos funciones continuas a derecha, entonces la solución a \eqref{eq:10} será distinta. Por ejemplo, consideremos el siguiente problema de valores iniciales
+	\cancel{d\varphi=f(t,\varphi(t))d\mu,}
+\end{equation*}
+}
+es una función $\varphi\in BV([0,T],\rr^n)$ \deleted{y} continua a izquierda, que cumple con la ecuación integral \eqref{eq:9}. Sin embargo, no es la única \textcolor{blue}{forma de definir  solución} \deleted{solución} que podemos \replaced{encontrar en la literatura de la materia }{ obtener} para esta ecuación. 
+
+\highlight[comment={No entiendo. ¿Estas queriendo decir que las distintas definiciones no son equivalentes?}]{Dependiendo de  a qué   consideramos solución, ésta puede variar.} Si en la construcción de la medida de Lebesgue-Stieltjes (hecha en el capítulo $2$) tomamos funciones continuas a derecha, entonces la solución a \eqref{eq:10} será distinta\reversemarginpar\comment{Me parece que la medida de Lebesgue-Stieljes no cambia. La medida asociada es la misma sea continua para una lado o para otro. Lo que cambia es la integral $\int f(t,\varphi)d\nu$ }. 
+
+
+\vspace{1.5cm}
+ejemplo,\normalmarginpar\comment{Por qué no un \texttt{\textbackslash begin\{ejemplo\}}?}  consideremos el siguiente problema de valores iniciales
 \begin{equation} \label{ej:soluciones}
 \left\{\begin{array}{lc}
         dx=-ax(t)\:d\delta_1 & t\in[0,2]  \\
@@ -217,14 +250,14 @@ donde $\delta_1$ es la medida delta de Dirac concentrada en $1$. La solución co
 \begin{equation*}
 x(t)=\left\{\begin{array}{ccc}
         x_0 & si & t\in[0,1]  \\
-        0 &si & t\in(1,2].
+        0 \textrm{\todo{Me parece que es $(1-a)x_0$}} &si & t\in(1,2].
     \end{array}\right.
 \end{equation*}
-En cambio, la solución continua a derecha es
+\replaced{Si modificasemos nuestra Definición \ref{def-sol} exigiendo que una solución sea continua a derecha,  la solución sería}{En cambio,  la solución continua a derecha es}\comment{Nunca hablamos de soluciones continuas a derecha, porque en la Definición \ref{def-sol} dice expresamente que son continuas a izquierda. Por eso te propongo lo que escribí en verde}
 \begin{equation*}
 x(t)=\left\{\begin{array}{ccc}
         x_0 & si & t\in[0,1)  \\
-        \frac{x_0}{2} &si & t\in[1,2].
+        \frac{x_0}{2} \reversemarginpar\textrm{\todo{Me parece que va $\frac{x_0}{1+a}$. Creo que estas poniendo los resultados como si $a=1$. Sería interesante acotar que si $x_0\neq 0$ y $a=-1$ entonces las funciones dejan de estar definidas para $t>2$ y que ese problema no se presenta con la  Definición \ref{def-sol}. Otra cosa remplaza \texttt{``si''<->``\textbackslash text\{si\}''}  }}&si & t\in[1,2].
     \end{array}\right.
 \end{equation*}
 Otras definiciones de solución para la ecuación \eqref{eq:10} pueden encontrarse en el marco de la teoría de distribuciones \textcolor{blue}{(pongo referencia??)}, y como límite puntual de una sucesión de soluciones a ecuaciones sin medida. Es decir, una sucesión  $\varphi_k$ de soluciones a la ecuación
@@ -233,8 +266,11 @@ Otras definiciones de solución para la ecuación \eqref{eq:10} pueden encontrar
 \begin{equation}
 	d\varphi_k=f(t,\varphi_k(t))v_k(t),
 \end{equation}
-donde $v_k$ son continuas y  $v'_k\to \dfrac{d\mu}{d\lambda}$.
-Veamos este tipo de solución para  el ejemplo \eqref{ej:soluciones}. La sucesión de funciones
+donde $v_k$ son continuas y  $v'_k\to \dfrac{d\mu}{d\lambda}$ \added{en la topología debil-${}^\ast$ de $C([0,T])^\ast$}
+
+\newpage
+
+Veamos este \comment{le daría más relevancia a este ejemplo con un \texttt{\textbackslash begin\{ejemplo\}}. Explicaría más que queres decir con <<este tipo de solución>>} tipo de solución para  el ejemplo \eqref{ej:soluciones}. La sucesión de funciones
 \begin{equation*}
 h_k(t)=\left\{\begin{array}{ccc}
         0 & si & t\in[0,1-1/k]\\
@@ -242,23 +278,23 @@ h_k(t)=\left\{\begin{array}{ccc}
         1 &si & t\in[1,2],
     \end{array}\right.
 \end{equation*}
-son continuas y convergen a la función de Heaviside $H_1$, cuya derivada es $\delta_1$. Luego la solución a
+son continuas y convergen \reversemarginpar\comment{Siempre que se dice <<converge>> hay que decir como} a la función de Heaviside $H_1$, cuya derivada es $\delta_1$. \normalmarginpar\highlight[comment={No es un luego, por que lo que sigue no se infiere de lo anterior}]{Luego} la solución a
 \begin{equation}
 \left\{\begin{array}{lc}
         dx=-ax(t)h_k(t) & t\in[0,2]  \\
           x(0)=x_0, &
     \end{array}\right.
 \end{equation}
-es $x_k(t)=x_0\exp{\left(-\int_0^th_k(t) dt\right)}$. Cuando $k\to \infty$, $x_k$ tiende a
+es $x_k(t)=x_0\exp{\left(-\added{a}\int_0^th_k(\replaced{s}{\cancel{t}}) d\replaced{s}{\cancel{t}}\right)}$. Cuando $k\to \infty$, $x_k$ tiende a
 \begin{equation*}
 x(t)=\left\{\begin{array}{ccc}
         x_0 & si & t\in[0,1)\\
         
-        x_0e^{1-t} &si & t\in[1,2],
+        x_0e^{\added{a(}1-t\added{)}}&si & t\in[1,2],
     \end{array}\right.
 \end{equation*}
 que es la solución a \eqref{ej:soluciones}. 
-Como vemos podemos tener distintas soluciones para la misma ecuación, dependiendo de qué entendamos como solución. Este fenómeno se conoce como la paradoja de MDE.
+Como vemos podemos tener distintas soluciones para la misma ecuación, dependiendo de qué entendamos como solución. \comment{Poner cita, creo que el primero que se refirió a esto fue un tal Persson. Sugiero lo verde} Este fenómeno  {\color{green} fue descripto por J. Persson (ver\cite{persson1989regularization,S.T.Zavalishchin})}\deleted{se conoce} como la paradoja de \added{las } MDE.
 
 
  
@@ -277,43 +313,49 @@ Como vemos podemos tener distintas soluciones para la misma ecuación, dependien
  
  
  \section{Existencia de Soluciones a MDE}
-  En esta sección vamos a presentar algunos resultados, probados en \cite{P.Mazzone}, sobre existencia de soluciones locales. 
+ 
+ \todo[inline]{Para ser más precisos llamaría a esta sección ``Existencia de soluciones a problemas de valores iniciales para MDE''.  No pondría el teorema de cambio de variables en esta sección, le haría una sección propia a ese teorema.}
+ 
+ 
+ 
+ 
+  En esta sección vamos a presentar algunos resultados, probados en \cite{P.Mazzone}, sobre existencia de soluciones locales \added{a problemas de valores iniciales}. 
 
-\textcolor{red}{ 
-  En algunos trabajos se escribe algo del estilo: 
-  ``Con el objeto/objetivo de hacer este trabajo autocontenido, en esta sección vamos a presentar  algunos resultados...''}
+
   
-  Al final, demostraremos un teorema de cambio de variables para integrales de Lebesgue-Stieltjes (L-S)\index[Simbolo]{(L-S)}.
+  Al final, demostraremos un teorema de cambio de variables para integrales de Lebesgue-Stieltjes (L-S)\index[Simbolo]{(L-S)}. \comment{Esto,para mi,  debería ir en otra sección, en una propia para ese resultado}
+  
+  
  \subsection{Soluciones locales}
 
  Vamos a considerar el problema de valores iniciales con medida (MDE)\index{MDE}
  \begin{equation}\label{Problema P}
  	\left\lbrace \begin{array}{l}
- 		d(\varphi)=f(t,\varphi(t))d\mu\\
+ 		\added{d\varphi}\cancel{d(\varphi)}=f(t,\varphi(t))d\mu\\
  		\varphi(0)=x_0,
  	\end{array}\right. \tag{${P}$}
  \end{equation}
- donde $f:\Omega\subset[0,T]\times\rr^n\to\rr^{n}$, $\mu$ es una medida de Borel finita y $d\varphi$ es la medida de Lebesgue-Stieltjes generada por $\varphi$. \textcolor{blue}{ En adelante, cuando hablemos de medidas de Borel, estaremos refiriéndonos a medidas  positivas. En cualquier otro caso, lo aclararemos.}
+ donde $f:\Omega\subset[0,T]\times\rr^n\to\rr^{n}$, $\mu$ es una medida de Borel  finita y $d\varphi$ es la medida de Lebesgue-Stieltjes generada por $\varphi$. \textcolor{blue}{ En adelante, cuando hablemos de medidas de Borel, estaremos refiriéndonos a medidas  positivas. En cualquier otro caso, lo aclararemos.}
  
 
 
 \begin{defi}
-    Sea $t_0\in [0,T)$, $h>0$,  $x_0\in \rr^n$ y $r>0$, diremos que $f:\Omega=[t_0,t_0+h]\times\rr^n\to\rr^{n}$ es localmente Lipschitz \index{localmente lipschits} si  existe $ L>0$  tal que
+    Sea $t_0\in [0,T)$, $h>0$,  $x_0\in \rr^n$ y $r>0$, diremos que $f:\Omega=[t_0,t_0+h]\times\rr^n\to\rr^{n}$ es localmente Lipschitz \index{localmente lipschits} \added{respecto a la segunda variables, }si  existe $ L>0$  tal que
 	\begin{equation}\label{f lipschitz}
 	\left\| f(t,x)-f(t,y)\right\|\leq L\left\| x-y\right\|
 \end{equation}
 	para todo $(t,x,y)\in I\times \overline{B(x_0,r)}\times \overline{B(x_0,r)}$.
 \end{defi}
 
- \textcolor{red}{La primera oración de la siguiente definición está confusa o desordenada en la presentación de los elementos.}
+ \textcolor{red}{La primera oración de la siguiente definición está confusa o desordenada en la presentación de los elementos.} {\color{green} No se si está confusa.  Si me parece que venis como preparando el terreno para considerar medidas positivas, yo hubiera formulado el teorema para esas medidas, sino es como que se pierde el rumbo de para que se hacen las cosas. Le cambiaría los supuestos a $\mu$ y $f$. Pero a todo esto, ya habías definido solución, no es como redundante volver a definir lo mismo. Por otro lado, decis definir ``solución al problema (P)'' pero la definición no considera la condición inicial. En fin hay varias cosas en esta definición mejor lo hablamos. }
 
 
  
  \begin{defi}[\textbf{Solución del problema (P)}]\label{def:sol}
- Sea $I=[t_0,t_0+h)\subset \rr$, $\mu:I\to \rr^m$  una medida vectorial de Borel, $x_0\in \rr^n$  y $\Omega\subset I\times\rr^n$ un entorno abierto de $(t_0,x_0)$. Si supongamos  que $f:\Omega\to \rr^{n\times m}$ cumple con
+ \replaced{Sean}{Sea} $I=[t_0,t_0+h)\subset \rr$, $\mu:I\to \rr^m$  una medida vectorial de Borel, $x_0\in \rr^n$  y $\Omega\subset I\times\rr^n$ un entorno abierto de $(t_0,x_0)$. Si supongamos  que $f:\Omega\to \rr^{n\times m}$ cumple con
  	\begin{enumerate}[label=\upshape(\Roman*),ref=(\Roman*)]
- 		\item\label{th:c1} Para cada $x\in\rr^n$, $f(t,x)$ es $\mu$-medible respecto a la variable $t$. 
- 		\item\label{th:c2} Para cada $t$, $f(t,x)$ es continua con respecto  a  la variable $x$.
+ 		\item\label{th:c1} Para cada $x\in\rr^n$, $f(t,x)$ es \replaced{medible Borel}{$\mu$-medible} respecto a la variable $t$. 
+ 		\item\label{th:c2} Para cada $t$, $f(t,x)$ es continua con respecto  a  la variable $x$. \comment{creo que hace falta ``para casi todo ''}
  		\item\label{th:c3} Existe $\alpha:\rr^n\to[0,\infty)$ continua y $\beta\in L^1(\rr,|\mu|)$ no negativa tal que 
  		$$\left\| f(t,x)\right\|\leq \beta(t)\alpha(x) .$$
  	\end{enumerate}
@@ -338,18 +380,22 @@ Como vemos podemos tener distintas soluciones para la misma ecuación, dependien
 
 \begin{thm}[Picard–Lindelöf] 
 	\label{P-L}
-	Supongamos que $f$ está acotada (es decir $\|f\|_{\infty}\leq M$), y satisface las condiciones \ref{th:c1} y \ref{th:c2} y \eqref{f lipschitz}. Asumimos que $\mu$ es una medida de Borel definida en $I$ y existe $\delta_1>0$ tal que $|\mu|([t_0,t_0+\delta_1))\leq r/M$. Si $\delta=min\{\delta_1, h\}$, el problema \eqref{Problema P} tiene una única solución en el intervalo $[t_0, t_0+\delta)$.
+	Supongamos que $f$ está acotada (es decir $\|f\|_{\infty}\leq M$), y satisface las condiciones \ref{th:c1} y \ref{th:c2} y \eqref{f lipschitz}. Asumimos que $\mu$ es una medida de Borel definida en $I$ y existe $\delta_1>0$ tal que \comment{Pongamos medidas positivas} $|\mu|([t_0,t_0+\delta_1))\leq r/M$. Si $\delta=min\{\delta_1, h\}$, el problema \eqref{Problema P} tiene una única solución en el intervalo $[t_0, t_0+\delta)$. \reversemarginpar\comment{Le falta algo al teorema, el $r$ nunca fue presentado. Cuando traes cosas de otro lado tenes que adaptarlas al contexto en el que estas vos.}
 	
 \end{thm}
  
  La demostración del teorema está en \cite[Teorema 4.1]{P.Mazzone}
  
  \subsection{Extensión de las soluciones}
+
+
+ 
  \begin{defi}[\textbf{Solución Máxima}] \index{solución máxima}
  	Sean $\Omega\subset\rr\times\rr^n$ un conjunto abierto, $f:\Omega\to\rr^n$, $(t_0,x_0)\in\Omega$ y $\mu$ una medida de Borel finita. Si $\varphi$ es solución del problema \eqref{Problema P} en el intervalo $I=[t_0,t_0+\delta)$, diremos que $(\varphi,I)$ es la solución máxima si no hay otra solución $(\psi,J)$ tal que $I\subset J$ y para todo $t\in I$ $\varphi(t)=\psi(t)$.
  \end{defi}
 
- \begin{defi} 
+ 
+ \begin{defi}\comment{Esta definición no la usas en esta sección, recién la usas por primera vez, creo, en el Teorema \ref{th: P}. Mejor introducila en ese lugar.}  
  	Sean $\mu$ una medida de Borel finita y  $f:[0,T]\times\rr^n\to\rr^n$. Diremos que $f$ cumple con la \textbf{condiciones de teletransportación}\index{condiciones de teletransportación} en  $\overline{B(0,R)}$, si  para todo $t\in[0,T]$ tal que $\mu(\{t\})\neq0$ y $x\in\overline{ B(0,R)}$ vale que 
  	\begin{equation*}
  		x+f(t, x)\mu(\{t\}) \in \overline{B(0,R)}, \label{fun-tele}
@@ -358,11 +404,11 @@ Como vemos podemos tener distintas soluciones para la misma ecuación, dependien
  \end{defi}
 
 \begin{thm}	\label{th:extensión}
-	Sean $\mu$ una medida de Borel finita, $f$ localmente Lipschitz respecto a la variable vectorial y $\varphi$  solución máxima de \eqref{Problema P} en $I=[t_0,t_1)$. Entonces una y sólo una de las siguientes afirmaciones es verdadera: 
+	Sean $\mu$ una medida de Borel finita, $f$ \comment{Sería bueno especificar dominio y codominio de $f$, o decir que es igual que en otro enunciado} localmente Lipschitz respecto a la \added{segunda} variable \deleted{ vectorial} y $\varphi$  solución máxima de \eqref{Problema P} en $I=[t_0,t_1)$. Entonces una y sólo una de las siguientes afirmaciones es verdadera: 
 	\begin{enumerate}[label=\upshape(\Roman*)]
 		\item  Para todo $K\Subset\Omega$ existe $t_2\in I$ tal que $(t,\varphi(t))\notin K$ para todo $t\in(t_2,t_1)$.
-		\item Existe el límite $x_1=\lim\limits_{t\to t_1^-}\varphi(t)$, tal que  $(t_1,x_1)\in\Omega$ y 
-		$$\left( t_1 ,\varphi(t_1)+f(t_1,\varphi(t_1))\mu(\{t_1\})\right) \notin \Omega.$$
+		\item Existe el límite $x_1=\lim\limits_{t\to t_1^-}\varphi(t)$ \replaced{y este límite satisface que}{, tal que}  $(t_1,x_1)\in\Omega$ y 
+		$$\left( t_1 ,\added{x_1}\deleted{\cancel{\varphi(t_1)}}+f(t_1,\added{x_1}\deleted{\cancel{\varphi(t_1)}})\mu(\{t_1\})\right) \notin \Omega.$$
 	
 	\end{enumerate}
 \end{thm}
@@ -378,24 +424,28 @@ La demostración de este resultado se puede ver en \cite[Teorema 5.5]{P.Mazzone}
 
 
 
+\newpage
 
 
 
 
 
 
-\subsection{Teorema de Cambio de Variables}\index{Teorema de Cambio de Variables}
+\subsection{Teorema de Cambio de Variables}\index{Teorema de Cambio de Variables} \comment{Esta es una  subsección   de la sección  ``Existencia de Soluciones de MDE''. Me parece que no tiene tanto que ver con eso. La recategorizaría como sección}\reversemarginpar \comment{Te sugiero ingresar de siguiente modo en el glosario: \texttt{\textbackslash index\{Teorema!Cambio Variables\}}. Si vos ahora pones (por ejemplo) \texttt{\textbackslash index\{Teorema!Radon-Nikodym\}}  va a escribir una vez la palabra Teorema  y cada Teorema va a ser una subentrada de la palabra Teorema} 
 
 
-Vamos a demostrar una generalización del Teorema de Cambio de Variables \cite[Teorema 6.1]{P.Mazzone}, para el caso donde $|F''|<M$, el cual usaremos para demostrar una desigualdad del tipo Gronwall.  
+\newpage
+Vamos a demostrar una generalización \deleted{del Teorema de Cambio de Variables} \cite[Teorema 6.1]{P.Mazzone} \added{que es un resultado sobre cambios de variables en integrales respecto a medidas de Lebesgue-Stieltjes}. \highlight[comment={Todavía no apareció $F$, el que lee no le va a decir mucho}]{ , para el caso donde $|F''|<M$,}.
+\added{En \cite[Teorema 6.1]{P.Mazzone} el resultado fue probado cuando cierta función $F$ es convexa, aquí lo extenderemos para funciones con derivada segunda acotada.} \replaced{Posteriormente}{ el cual} usaremos \added{nuestro resultado} para demostrar una desigualdad del tipo \added{de la desigualdad de } Gronwall.  
+
+
 Empecemos enunciando el siguiente lema de cubrimiento demostrado en \cite[Corolario I, p 35]{Evans}.
 
-\textcolor{red}{Si bien la etiqueta de las referencias bibliográficas no se ven impresas, habría que respetar la ortografía. Por ejemplo, usar Evans  en lugar de Evanz.
-Y en la sección Bibliografía, habría que uniformizar la presentación de los autores (en algunos casos aparecen los nombres completos, en otros sólo la inicial).}
+\textcolor{red}{En la sección Bibliografía, habría que uniformizar la presentación de los autores (en algunos casos aparecen los nombres completos, en otros sólo la inicial).}
 
 \begin{lem}[Lema de cubrimiento]
 	\label{Lema de  cubrimiento}
-	Sea $\mu$ una medida de Borel en $\rr^n$, y $\mathcal{F} $ cualquier colección de bolas cerradas. Sea $A$ el conjunto de los centros de las bolas en $\mathcal{F} $. Supongamos que $\mu(A)<\infty$ y $\inf\{r\mid B(a,r)\in \mathcal{F} \}=0$ para cada $a\in A$.  Entonces, para todo conjunto abierto $U\subset\rr^n$ existe una sucesión numerable $\mathcal{G} $ de bolas de $\mathcal{F} $ tal que 
+	Sea $\mu$ una medida de Borel en $\rr^n$, y $\mathcal{F} $ cualquier colección de bolas cerradas. Sea $A$ el conjunto de los centros de las bolas en $\mathcal{F} $. Supongamos que $\mu(A)<\infty$ y \added{que}  $\inf\{r\mid B(a,r)\in \mathcal{F} \}=0$ para cada $a\in A$.  Entonces, para todo conjunto abierto $U\subset\rr^n$ existe una sucesión numerable $\mathcal{G} $ de bolas de $\mathcal{F} $ tal que 
 	\begin{equation*}
 		\bigcup_{B\in \mathcal{G} }B\subset U \quad \text{y}\quad \mu\left( (A\cap U)\setminus\bigcup_{B\in \mathcal{G} }B\right)=0. 
 	\end{equation*}
@@ -407,7 +457,7 @@ Y en la sección Bibliografía, habría que uniformizar la presentación de los 
 
 
 \begin{thm}\label{TCV}
-Asumamos que $J\subset\rr$ es un intervalo abierto. Sea $F:J\to \rr$ una función diferenciable tal que $F'$ es acotada y absolutamente continua. Además,  supongamos que existe $M\geq 0$ tal que $F''>-M$. Entonces, para toda función $g:I\to J$ creciente y  continua a izquierda,  donde $I$ es un intervalo abierto, y para todo $A\in \mathcal{B}(I)$ vale que
+Asumamos que $J\subset\rr$ es un intervalo abierto. Sea $F:J\to \rr$ una función diferenciable tal que $F'$ es acotada y absolutamente continua. Además,  supongamos que existe $M\geq 0$ tal que $F''\replaced{\geq}{\cancel{>}}-M$ \added{$\lambda$-en casi todo punto}. Entonces, para toda función $g:I\to J$ \added{no de}creciente y  continua a izquierda,  donde $I$ es un intervalo abierto, y para todo $A\in \mathcal{B}(I)$ vale que
 $$\int_{A}F'(g(s)) \; dg\leq \mu_{F\circ g}(A)+\dfrac{M}{2}\sum_{t\in D\cap A}\mu_{g}(\{\tau\})^2,$$
 donde $D=\{\tau\in I \mid \mu_{g}(\{\tau\})>0\}$.\label{Teorema medidas}
 \end{thm}
@@ -419,17 +469,19 @@ para todo $A\in \mathcal{B}(I)$.}
 Antes de comenzar con la demostración, vamos a ver los siguientes lemas que nos serán utiles.
 
 \begin{lem}
-Sea $F$ bajo las hipótesis del Teorema \ref{Teorema medidas}. Supongamos que $|F'|\leq R$, entonces para cualquier función $g:I\to J$ creciente y continua a izquierda, y para $[a,b)\subset I$  vale que \begin{equation}
+Sea $F$ bajo las hipótesis del Teorema \ref{Teorema medidas}. Supongamos que $|F'|\leq R$, entonces para cualquier función $g:I\to J$ creciente y continua a izquierda, y para $[a,b)\subset I$  vale que \comment{Demostrar la desigual para todo boreliano $A\subset I$, no solo para $A=[a,b)$}. 
+
+\begin{equation}
     |\mu_{F\circ g}([a,b))|\leq R\mu_{g}([a,b)).
 \end{equation}
 En particular, vale que $\mu_{F\circ g}\ll \mu_g$.\label{lem: abs cont}
 \end{lem}
 \begin{proof}[Dem.]
 
-Para $[a,b)\subset I$, llamemos $x=g(a)$ e $y=g(b)$. Como $g$ es creciente entonces $x<y$, y dado que $F'$ es continua, podemos aplicar el  teorema del valor medio del cálculo diferencial. Luego, existe en $c\in (x,y)$ tal que 
+Para $[a,b)\subset I$, llamemos $x=g(a)$ e $y=g(b)$\comment{hay un pequeño detalle, como $I$ es abierto podría ocurrir que $b\notin I$}. Como $g$ es creciente entonces \replaced{$x\leq y$}{$x<y$}, y dado que $F'$ es continua, podemos aplicar el  teorema del valor medio del cálculo diferencial. Luego, existe en $c\in (x,y)$ tal que 
 
 	$$ \dfrac{|F(y)-F(x)|}{y-x} =  |F'(c)| \leq \sup_{t\in J}\left|F'(t) \right|, $$
-	y como $|F'|<R$ para $R>0$, entonces
+	y como \replaced{$|F'|\leq R$}{ $|F'|<R$ } para $R>0$, entonces
 	\begin{equation} \label{eq:f'}
 		 |F(y)-F(x)| \leq R (y-x).
 	\end{equation}
@@ -446,11 +498,13 @@ Ahora, para $(a,b)\in \mathcal{B}(I)$ se tiene que
     \leq R\lim_{n\to \infty}\mu_{g}\left(\left[a+\frac{1}{n},b\right)\right)=R\mu_g((a,b)).
 \end{multline}
 Sea $A\in \mathcal{B}(I)$, $\forall \epsilon>0$ existe  una sucesión de intervalos disjuntos $(a_i,b_i)$ tal que $A\subset \displaystyle\bigcup_{i=1}^{\infty}(a_i,b_i)$ y  por  \cite[Lema 1.7]{folland} 
-$$\sum_{i=1}^{\infty}\mu_{ g}(a_i,b_i)\leq \mu_g(A)+\epsilon,$$
+$$\sum_{i=1}^{\infty}\mu_{ g}(a_i,b_i)\textrm{\todo{No sería $\mu_{ g}((a_i,b_i))$?}}\leq \mu_g(A)+\epsilon,$$
 luego por \eqref{eq:324}
 \begin{equation}
-    \mu_{F\circ g}(A)\leq \sum_{i=1}^{\infty}\mu_{F\circ g}(a_i,b_i)\leq R\sum_{i=1}^{\infty}\mu_{ g}(a_i,b_i)\leq \mu_g(A)+\epsilon.\label{eq:<}
+    \mu_{F\circ g}(A)\leq \sum_{i=1}^{\infty}\mu_{F\circ g}(a_i,b_i)\leq R\sum_{i=1}^{\infty}\mu_{ g}(a_i,b_i)\leq \added{R\mu_g(A)+R\epsilon.}\cancel{\mu_g(A)+\epsilon}.\label{eq:<}
 \end{equation}
+\todo[inline]{En la primera desigualdad de la cadena anterior usas la monotonía de la medida ($A\subset B\Rightarrow  \mu_{F\circ g}(A)\leq  \mu_{F\circ g}(B)$. Sin embargo las medidas con signo dejan de tener esta propiedad pues podría ser que  $\mu_{F\circ g}(B-A)<0$. Mejor charlemos sobre la demostración de este resultado, para mi una vez que lo demostraste para intervalos $[x,y)$ pasas al álgebra que generan y de allí a la definición de medida. }
+
 Por otro lado, existe una sucesión de intervalos disjuntos $(a_j,b_j)$ tal que 
 $$\sum_{j=1}^{\infty}\mu_{F\circ g}(a_j,b_j)\leq \mu_{F\circ g}(A)+\epsilon,$$
 usando nuevamente \eqref{eq:324} llegamos a que 

@@ -134,13 +134,13 @@ Sea $\mathcal{A}$ un álgebra\added{ de subconjuntos de $X$, es decir $\mathcal{
  
 \begin{itemize}
     \item $\mu_0(\emptyset)=0,$
-    \item si $\displaystyle\left\{A_i\right\}_1^\infty$ es una familia de conjuntos disjuntos tal que $\displaystyle\bigcup_1^\infty A_i\in \mathcal{A}$, entonces $\displaystyle\mu_0\left(\bigcup_1^\infty A_i\right)\leq \sum_1^\infty \mu_0\left(A_i\right).$ 
+    \item si $\displaystyle\left\{A_i\right\}_1^\infty$ es una familia de conjuntos disjuntos tal que $\displaystyle\bigcup_1^\infty A_i\in \mathcal{A}$, entonces $\displaystyle\mu_0\left(\bigcup_1^\infty A_i\right)\leq \textrm{\todo{Me parece que va el $=$. Chequealo del libro}} \sum_1^\infty \mu_0\left(A_i\right).$ 
 \end{itemize}
 
 \end{defi}
 
 
-\comment{Aca traería la cuestión de la medida exterior, porque eso forma parte del método general, es decir con la definición que das extendes cualquier premedida}
+\reversemarginpar\comment{Aca traería la cuestión de la medida exterior, porque eso forma parte del método general, es decir con la definición que das extendes cualquier premedida}
 
 
 \textcolor{blue}{Vamos a \replaced{denotar}{notar} con $\mathcal{A}$ \index[Simbolo]{$\mathcal{A}$} a la colección de todos los conjuntos que se escriben como unión finita de intervalos disjuntos de la forma $[a,b)$ con $-\infty<a<b<\infty$, más el conjunto $\emptyset$. En proposición 1.2 y  1.7 de \cite{folland} se muestra que  $\mathcal{A}$ es un álgebra y que además genera la $\sigma$-álgebra de Borel.}
@@ -160,7 +160,7 @@ $$\mu_{0}\left( \bigcup_{j=1}^m[a_j,b_j)\right)  =\sum_{j=1}^{m}\left(u(b_j)-u(a
 es una premedida  en $\mathcal{A}$. A partir de una premedida podemos definir  medida exterior para cualquier conjunto arbitrario $E\subset\rr$ \index{medida! exterior} de la siguiente manera 
 $$\mu^{*}(E)=\inf\left\lbrace \sum_{ j=1 }^{\infty}\mu_{0}(A_j) \mid \ A_j\in \mathcal{A}, \ \  E\subset\bigcup_{j=1}^{\infty}A_j \right\rbrace. $$\index[Simbolo]{$\mu^{*}$}En $\mathscr{B}(\rr)$, $\mu^{*}$ satisface los axiomas de medida \cite[Proposición 1.13]{folland}.
 %A partir de la medida exterior podemos definir los conjuntos $\mu$-medibles.
-\begin{defi}
+\begin{defi}\label{defi:med_lebe_sti}
 	Si $u:\rr \to \rr$ es creciente\comment{En lugar de  creciente deberías decir no decreciente, fijate por otras veces que aparece} y continua a izquierda, llamaremos medida de Lebesgue-Stieltjes $\mu_{u}$ a la medida inducida por $\mu_{0}$ mediante el procedimiento anterior. \index{medida! Lebesgue-Stieltjes}
 \end{defi}
 
