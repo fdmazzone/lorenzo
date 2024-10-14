@@ -84,8 +84,10 @@ Sea $\mathcal{X}$ un espacio métrico completo. Definimos  $T^n=T\circ T\circ ..
     \end{equation*}
 para todo $x,y\in \mathcal{X}$ y para todo $n$. Entonces $T$ tiene un único punto fijo en $\mathcal{X}$.
 \end{cor}
+
+\newpage
 \begin{thm}\label{th:picar}
-    Sea $\mu$ una medida de Borel finita y positiva en $[0,T]$, y sea $f:[0,T]\times\rr^n\to\rr^n$ continua y que satisface \ref{f lipschitz}, entonces el problema \eqref{eq:P} tiene una única solución, es decir existe una única función $\varphi\in BV([0,T],\rr^n)$, continua a izquierda tal que 
+    Sea $\mu$ una medida de Borel finita y positiva en $[0,T]$, y sea $f:[0,T]\times\rr^n\to\rr^n$ continua y que satisface \ref{f lipschitz},\comment{Cuando cites ecuaciones usa el comando \texttt{$\backslash$ eqref}, asi el lector sabe que tiene que buscar una ecuación y no un enunciado. Otra cosa, me parece que faltan hipótesis para $f$. En vistas de este teorema que citas, tenemos que analizar si incluir el que enunciasnte en un capítulo anterior } entonces el problema \eqref{eq:P} tiene una única solución, es decir existe una única función $\varphi\in BV([0,T],\rr^n)$, continua a izquierda tal que 
     \begin{equation*}
         \varphi(t)=\alpha + \int_{[0,t)}f(s,\varphi(s))\, d\mu.
     \end{equation*}

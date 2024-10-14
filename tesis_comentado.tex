@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%PREAMBLE%%%%%%%%%%%%%%%%%%%==========================================================================
 \documentclass[a4paper,11pt]{book}
 \usepackage[left=4.5cm,right=4.5cm,top=2.5cm,bottom=2.5cm]{geometry}
-
+\linespread{1.5} 
 %%%%%%%%%  Packages %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{amsmath, amsthm, amssymb,latexsym}
 \usepackage{mathabx}
@@ -19,7 +19,9 @@
 \usepackage{imakeidx}
 \usepackage{enumitem} %%%\item\labe
 \usepackage{soul}
+ 
 \usepackage{empheq}
+ 
 
 %%%%%%%%%%%%%%% Para comentarios en el texto bo
   
@@ -38,6 +40,7 @@
 \@namedef{Changes@AuthorColor}{green}
 \colorlet{Changes@Color}{green}
 \makeatother
+ 
  
 
 %%%%%%%%%%%%%%  Theorems like environments %%%%%%%%%%%%%%%%%%
@@ -140,13 +143,17 @@
 \include{agradecimiento_comentado}
 \tableofcontents
 
+%\listofchanges[title=Comentarios gamas de magenta]
+%\listoftodos[Comentarios gama de rojo]
+
 \include{Capitulo1_comentado}
 
-% 
- \include{Capitulo2_comentado}
+
+\include{Capitulo2_comentado}
 % 
  \include{Capitulo3_comentado}
- \include{Capitulo4_comentado}
+ 
+\include{Capitulo4_comentado}
 %  
 %  
  \include{ApendiceA_comentado}
@@ -159,7 +166,7 @@
 \printindex[Simbolo]
 %\bibliographystyle{plain}
 \bibliographystyle{abbrv}
-\bibliography{lib_tesis}
+\bibliography{lib_tesis,biblio}
 
 
 
