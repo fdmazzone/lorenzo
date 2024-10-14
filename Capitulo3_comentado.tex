@@ -457,6 +457,7 @@ Empecemos enunciando el siguiente lema de cubrimiento demostrado en \cite[Corola
 
 
 \begin{thm}\label{TCV}
+ 
 Asumamos que $J\subset\rr$ es un intervalo abierto. Sea $F:J\to \rr$ una función diferenciable\comment{La derivamos dos veces, capaz que tengas que decir que es dos veces diferenciable} tal que $F'$ es acotada y absolutamente continua. Además,  supongamos que existe $M\geq 0$ tal que $F''\replaced{\geq}{\cancel{>}}-M$ \added{$\lambda$-en casi todo punto}. Entonces, para toda función $g:I\to J$ \added{no de}creciente y  continua a izquierda,  donde $I$ es un intervalo abierto, y para todo $A\in \mathcal{B}(I)$ vale que
 $$\int_{A}F'(g(s)) \; dg\leq \mu_{F\circ g}(A)+\dfrac{M}{2}\sum_{t\in D\cap A}\mu_{g}(\{\tau\})^2,\textrm{\todo{En la sumatoria dice sobre que la suma es sobre $t$, pero en la expresión aparece $\tau$ en lugar de $t$}}$$
 donde $D=\{\tau\in I \mid \mu_{g}(\{\tau\})>0\}$.\label{Teorema medidas}
@@ -464,7 +465,7 @@ donde $D=\{\tau\in I \mid \mu_{g}(\{\tau\})>0\}$.\label{Teorema medidas}
  
 
 \begin{obs} \label{Teorema 6.1}
-\textcolor{blue}{El Teorema 6.1  de \cite{P.Mazzone} se deduce del Teorema  \ref{TCV} tomando $M=0$, pues $F$ sería convexa \comment{Por este comentario te pido que cambies la hipótesis a $F''\geq -M$, por que las funciones convexas satisface $F''\geq 0$ }y 
+\textcolor{blue}{El Teorema 6.1  de \cite{P.Mazzone} se deduce del Teorema  \ref{TCV} tomando $M=0$, pues $F$ sería convexa \comment{Por este comentario te pido que cambies la hipótesis a $F''\geq -M$, por que las funciones convexas satisface $F''\geq 0$ } y 
 $$\int_{A}F'(g(s)) \; dg\leq \mu_{F\circ g}(A),$$
 para todo $A\in \mathcal{B}(I)$.}
 \end{obs}
@@ -552,17 +553,21 @@ Como para todo conjunto abierto $A\in \mathcal{B}(I)$, existe una sucesión de i
     \mu_{F\circ g}(A)&=\mu_{F\circ g}\left(\bigcup_{i=1}^{\infty}(a_i,b_i)\right)=\sum_{i=1}^{\infty}\mu_{F\circ g}((a_i,b_i))\\&=\int_{\bigcup_{i=1}^{\infty}(a_i,b_i)}F'(g(s)) \;dg= \int_{A} F'(g(s))\; dg.
 \end{split}
 \end{equation*}
+ 
 \comment{Faltaría el caso general, $A\in \mathcal{B}(I)$}
+ 
 \end{proof}
 
 
 
 \begin{proof}[Dem. Teorema \eqref{TCV}]
+ 
 Sea $A\in \mathcal{B}(I)$, vamos a ver primero el caso particular \normalmarginpar\comment{Me parece que después no usas que demostraste el caso particular, no se podría sacar el caso particular?} cuando
 $A\cap D$ se reduce a un punto.
  Para cualesquiera $x$ e $y$ en $J$, por el teorema de Taylor (ver \cite[pg 13]{Evans}), existe $c$ entre $x$ e $y$ tal que
 		$$F(y)=F(x)+F'(x)(y-x)+1/2F''(c)(y-x)^2.$$
 		Como \replaced{$F''\geq -M$}{$F''>-M $} , \reversemarginpar\comment{hay que cambiar el $>$ por $\geq$ en todos lados.} entonces
+ 
 		$$F(y)>F(x)+F'(x)(y-x)-\frac{M}{2}(y-x)^2,$$ 
 		o equivalentemente 
 		\begin{equation}	\label{eq:f''}
@@ -640,8 +645,10 @@ $$\bigcup_{n=1}^{\infty}A\setminus\left( \tau_0,\tau_0+\frac{1}{n}\right) =A \qu
 
 
 %\begin{proof}[Dem ]\textit{Teorema \eqref{Teorema medidas}}.\\
+ 
 \comment{Me parece que aca termino el caso particular y empezas con el general, deberías anunciarlo en el texto. Aunque insisto que me parece que tratar el caso particular no lo veo necesario}
 Supongamos ahora que  $A\in \mathcal{B}(I)$ es un conjunto abierto cualquiera. Luego por el \replaced{Lema}{lema} \ref{lem: abs cont} y   \cite[Teorema 3.5]{folland}, para cualquier $\epsilon>0$ va a existir $\delta_1=\epsilon/R$ tal que si $\mu_g(A)< \delta_1$, entonces
+ 
 
 
 \begin{equation}
@@ -654,7 +661,7 @@ Por otro lado, como $F'$ es uniformemente continua entonces existe $\delta_2<\ep
 	Sea $B=\left\lbrace s\in A \mid \mu_{g}(\{s\})\geq \delta_2\right\rbrace $, como $\mu_{g}$ es una medida finita, entonces $B$ es un conjunto finito, es decir $B=\{s_1,s_2,\cdots,s_m\}$. Para $j\in\nn$ consideremos el conjunto $\displaystyle B_j=\bigcup_{i=1}^{m}(s_i, s_i+1/j]$. Como $\displaystyle \bigcap_{j=1}^{\infty}B_j=\emptyset$ entonces $\displaystyle \lim_{j\to\infty}\mu_{g}(B_j)=0$, por lo tanto existe $j_0\in \nn$ tal que $\mu_{g}(B_{j_0})<\delta_1$, y por \eqref{delta1} $$\int_{B_{j_0}}|F'(g(s))|\: dg(s)< \epsilon. $$
 	Sea $C=A\setminus{B_{j_0}}$, observemos que
 	\begin{itemize}
-		\item $C$ es un conjunto abierto. \comment{me parece que no es cierto. No habrá sido $C=A\setminus{\overline{B_{j_0}}}$?,}
+ 		\item $C$ es un conjunto abierto. \comment{me parece que no es cierto. No habrá sido $C=A\setminus{\overline{B_{j_0}}}$?,}
 		\item Si $t\in C$ entonces
 	$$\delta_2>\mu_{g}(\{t\})=\mu_{g}\left( \bigcap_{k=1}^{\infty}[t-1/k,t+1/k] \right)=\lim\limits_{k\to\infty}\mu_{g}\left([t-1/k,t+1/k] \right) $$
 y existe $k_0$ tal que $\forall k>k_0$
@@ -1208,6 +1215,7 @@ El siguiente teorema muestra que las soluciones de \eqref{eq:Problema 0}  están
 \begin{equation*}
 |\varphi_\alpha(t)-\varphi_\beta(t)|\leq K(t) |\alpha-\beta|e^{K(t)L\bar{|\mu|}([t_0,t))}.
 \end{equation*}
+
 Luego, si evaluamos en $t=T$ y llamamos  $K=K(T)=\displaystyle\prod_{\tau\in D}\textrm{\todo{$(1+\mu(\{\tau\}))$}}\mu(\{\tau\})<\infty$.
  
 
@@ -1236,6 +1244,7 @@ Luego, si evaluamos en $t=T$ y llamamos  $K=K(T)=\displaystyle\prod_{\tau\in D}\
  \end{thm}
  
  \begin{proof}[Dem.] Sea $\varphi_\alpha$  la solución a \ref{eq:Problema 0} y sea $A=\{t\in [0,T] \mid \varphi_\alpha(s)\in \overline{B(0,R)}, \; \forall s\in [0,t]\}$, veamos que el conjunto $A$ es simultáneamente abierto y cerrado relativo al intervalo $[0,T]$, y  como $[0,T]$ es conexo, entonces $A=[0,T]$.
+
   \newpage
   
  \comment{Fijate de modificar algunos ``veamos'' lo escribiste varias veces en la página}Veamos primero que  $A$  es un conjunto cerrado respecto al $[0,T]$. Para ello, sea   $t_n$  una sucesión de $A$ que converge a $t$, veamos que $t\in A$.  Si para algún $n$, $t_n\geq t$ entonces $\forall s \in [0,t]\subset [0,t_n] $ vale que $\varphi_\alpha(s)\in\overline{B(0,R)}$,   por lo tanto \deleted{en} $t\in A$.  Si por el contrario $\forall n$ tenemos que $t_n < t$,  como $\varphi_\alpha$ es continua a izquierda, entonces $\lim\limits_{n\to \infty}\varphi_\alpha(t_n)=\varphi_\alpha(t)$ y como cada $\varphi_\alpha(t_n)\in \overline{B(0,R)}$ es inmediato que $\varphi_\alpha(t)\in \overline{B(0,R)}$, {\color{green} es decir $t\in A$}.  Por lo tanto, $A$ es cerrado.
@@ -1249,11 +1258,14 @@ Luego, si evaluamos en $t=T$ y llamamos  $K=K(T)=\displaystyle\prod_{\tau\in D}\
    		\item Supongamos que $\varphi_\alpha(t_0)\in B(0,R)$.
      \end{itemize}
 En el problema \eqref{eq:Problema 0} podemos tomar como condición inicial $\varphi(0)=\varphi_\alpha(t_0)\replaced{=:}{=}\beta\in B(0,R)$, entonces por el Teorema \ref{P-L} existe una solución, que \comment{en español ``notaremos'' solo tiene el significado de ``percibir algo''} notaremos  $\varphi_{\beta}$. Luego, tenemos que para todo $t\in [0,\delta)$ \normalmarginpar\comment{Nunca introdujiste $\delta$} el par $(t,\varphi_\beta(t))\in \Omega$, donde  $\Omega$ es un entorno \added{????} de $[0,T]\times B(0,R)$. Ahora podemos extender a $\varphi_\alpha $ de la siguiente manera
+
 $$\varphi_\alpha(t)=\left\{\begin{array}{ccc}
     \varphi_\alpha(t) & si &  t\in[0,t_0)\\
      \varphi_\beta(t-t_0) & si &t\in[t_0,t_0+\delta) 
 \end{array}\right.$$
+
 Por lo tanto para todo $t\in[t_0,t_0+\delta)$ vale que $|\varphi_\alpha(t)|=|\varphi_\beta(t-t_0)|\leq R$. \replaced{Pero esto contradice que $t_0$ es límite de una sucesión en $[0,T]\setminus A$.}{Es decir existe $t>t_0$ tal que $t\in A$. }
+
 
     
     \begin{itemize}
@@ -1262,12 +1274,16 @@ Por lo tanto para todo $t\in[t_0,t_0+\delta)$ vale que $|\varphi_\alpha(t)|=|\va
     \item Supongamos que  $\varphi(t_0)\in \partial B(0,R)$ y $\mu(\{t_0\})\neq 0$.
     
     \end{itemize}
+ 
 Por \replaced{Definición \ref{fun-tele}}{\eqref{fun-tele}}  $x_1=\varphi(t_0)+f(t,\varphi(t_0))\mu(\{t_0\})\in B(0,R)$\replaced {.  Consideremos }{, y tomando} la medida $\hat{\mu}=\mu-\mu(\{t_0\})\delta_{t_0}$\replaced{. Es}{,  es} claro que $\hat{\mu}(\{t_0\})=0$, \replaced{ por consiguiente podemos}{ puedo} aplicar el Teorema \ref{P-L} para la condición inicial $\varphi(0)=x_1$, pero con la medida $\hat{\mu}$.  Luego, existe $\delta>0$  y $\varphi_{x_1}$ \added{Solución???}  tal que $|\varphi_{x_1}(t)|\leq R$ para todo $t\in [0,0+\delta)$. Ahora puedo extender la solución $\varphi_\alpha$ al intervalo $[0,t_0+\delta)$  de la siguiente manera
+ 
 $$\varphi_\alpha(t)=\left\{\begin{array}{ccc}
     \varphi_\alpha(t) & si &  t\in[0,t_0]\\
      \varphi_{x_1}(t-t_0) & si &t\in(t_0,t_0+\delta) 
 \end{array}\right.$$
+ 
 Por lo tanto existe $t>t_0$ tal que $|\varphi_\alpha(t)|<R$, es decir vale que $t\in A$. \comment{Me gustaría completar un poco más: Por qué es solución? Por qué  existe $t>t_0$ tal que $|\varphi_\alpha(t)|<R$?} 
+ 
 
 
 
@@ -1288,8 +1304,8 @@ De \eqref{eq:4} existe $b>0$ tal que $f(t_0,\varphi(t_0))\cdot\varphi(t_0)<-b$.
 Por \eqref{f lipschitz} y Corolario \ref{corolario_continuidad}, para $\epsilon=\frac{b}{3RL}$ existe $\delta_1>0$ tal que si $t\in[t_0,t_0+\delta_1)$ entonces
 \begin{equation}
     \begin{split}
-        \int_{[t_0,t)} f(s,\varphi_\alpha(s))-f(s,\varphi_\alpha(t_0))\; d\mu& \leq \added{L} \int_{[t_0,t)} |\varphi_\alpha(s)\added{-}\varphi_\alpha(t_0)|\; d\mu \\ &\leq \frac{b\added{L} }{3R}\mu((t_0,t)). \textrm{\todo{OJO!!!!  En el prinmer miembro tenes un vector y en el segundo un número. Toma norma en el primer miembro.}}
-    \end{split}\label{eq:A}
+         \int_{[t_0,t)} f(s,\varphi_\alpha(s))-f(s,\varphi_\alpha(t_0))\; d\mu& \leq \added{L} \int_{[t_0,t)} |\varphi_\alpha(s)\added{-}\varphi_\alpha(t_0)|\; d\mu \\ &\leq \frac{b\added{L} }{3R}\mu((t_0,t)). \textrm{\todo{OJO!!!!  En el prinmer miembro tenes un vector y en el segundo un número. Toma norma en el primer miembro.}}
+     \end{split}\label{eq:A}
 \end{equation}
 Además, como $f$ es continua en $t_0$ $\exists \delta_2>0 $ tal que si $s\in [t_0,t_0+\delta_2)$, entonces
 \begin{equation}
@@ -1331,7 +1347,6 @@ Luego, para cualquier $\alpha\in\overline{B(0,R)}$, $$P(\alpha)=\varphi_\alpha(T
  \highlight{Algo presentando el siguiente resultado. La referencia también}
  
  \begin{thm}[\textbf{Teorema de Brouwer}]
- 	
  	Sea $B(0,R)$ una bola de $\rr^n$  y sea $P:\overline{B(0,R)}\to \overline{B(0,R)}$ continua. Entonces existe $x \in \overline{B(0,R)}$ tal que $P(x) = x$.
  \end{thm}
  \begin{thm} \label{th:final}

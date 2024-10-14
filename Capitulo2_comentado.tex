@@ -235,7 +235,9 @@ $$\overline{u}(t)=\left\lbrace \begin{array}{rll}
  \end{equation*}
 \end{defi}
 
-\begin{obs}  \vphantom{a} \reversemarginpar \normalmarginpar \comment{Estas observaciones las citas después?}
+
+\begin{obs}  \vphantom{a} \normalmarginpar \comment{Estas observaciones las citas después?}
+
  
 	\begin{itemize}
         \item $\mu_{u}([a,b])=\mu_{\overline{u}}([a,b])=\overline{u}(b)-\overline{u}(a)=u(b)-u(a)$.
@@ -254,11 +256,13 @@ $$\overline{u}(t)=\left\lbrace \begin{array}{rll}
  
 \comment{Lo que viene, no sería más apropiado ponerlo en la sección siguiente?}
 \textcolor{blue}{Si en la definición \ref{def:premedida} tomamos a la función $\mu_0:\mathcal{A}\to \rr$, entonces la medida generada se llama medida con signo. \index{medida con signo}Veamos que para $f\in BV([a,b],\rr^n)$ la medida asociada a $f$, es una medida con signo.}
+
 \normalmarginpar
-\comment{Sería más enfático sobre, estuve rato para darme cuenta lo que querías decir. Te lo escribo en verde}
+\comment{Desarrollaría más, estuve rato para darme cuenta lo que querías decir. Te lo escribo en verde}
 
 
 \reversemarginpar
+
 \textcolor{green}{
  Si en la definición \ref{def:premedida} asumimos que $\mu_0$ toma valores en $\rr$, en lugar de los reales no negativos, llamaremos  a $\mu_0$ una \emph{premedida con signo}. Ahora podemos asociar una medida con signo a $\mu_0$ por el mismo procedimiento que usamos para premedidas (no negativas). }
  
@@ -284,7 +288,7 @@ $$\mu_{u}([a,b))=u(b)-u(a).$$
 Las siguientes definiciones y resultados están basados en \cite[Capitulo 3]{folland}.
 
 \begin{defi}
-	Diremos que la medida con signo $\nu$ es absolutamente continua \index{medida! absolutamente continua} respecto de la medida con signo $\mu$, y  notaremos $\nu\ll\mu$\index[Simbolo]{$\ll$}, si $\nu(A)=0$ cada vez que  $\mu(A)=0$. \normalmarginpar \comment{ Me parece que o bien $\mu$ es medida (sin signo), o pones $|\mu|(A)=0$}
+	Diremos que la medida con signo $\nu$ es absolutamente continua \index{medida! absolutamente continua} respecto de la medida con signo $\mu$, y  notaremos $\nu\ll\mu$\index[Simbolo]{$\ll$}, si $\nu(A)=0$ cada vez que  $\mu(A)=0$. \normalmarginpar \comment{ Me parece que o bien $\mu$ es medida (sin signo), o pones $|\mu|(A)=0$. Otra: ``notaremos'' significa ``percibiremos'' no ``denotaremos''}
 \end{defi}
 
 
@@ -366,9 +370,9 @@ El teorema anterior se denomina \textsc{descomposición de Jordan}\index{descomp
 Dadas dos medidas, el siguiente célebre teorema nos muestra  como podemos descomponer una de ellas en suma de dos medidas una absolutamente continua y otra mutuamente singular respecto a la segunda. Además  nos permite relacionar integrales entre medidas distintas. 
 }
 
-
+ 
 \begin{thm}[Radon-\replaced{Nikodym}{Nikodyn}]\label{TL-R-N}\normalmarginpar\comment{Es un teorema importante, agregalo al glosario}\reversemarginpar
-	Sea $\rho$ una medida finita con signo\comment{Hay que revisar la definición, pero en general las medidas con signo son siempre finitas, porque con estas medidas de admitir que pueden tomar valores infinitos  puede presentarse la indeterminación $\infty-\infty$, que con las medidas positivas no pasa} y $\mu$ una medida positiva finita en el espacio $\left( [0,T], \mathscr{B}([0,T])\right) $. Entonces existen $\lambda$ y $\nu$ medidas finitas con signo tal que 
+ 	Sea $\rho$ una medida finita con signo\comment{Hay que revisar la definición, pero en general las medidas con signo son siempre finitas, porque con estas medidas de admitir que pueden tomar valores infinitos  puede presentarse la indeterminación $\infty-\infty$, que con las medidas positivas no pasa} y $\mu$ una medida positiva finita en el espacio $\left( [0,T], \mathscr{B}([0,T])\right) $. Entonces existen $\lambda$ y $\nu$ medidas finitas con signo tal que 
 	\begin{equation*}
 		\lambda\perp\mu, \quad \nu\ll\mu  \quad \text{ y }\quad \rho=\lambda+\nu.
 	\end{equation*}
@@ -383,7 +387,9 @@ Más aún, existe una función $h:[0,T]\to\rr$ $\mu$-integrable tal que para tod
 
 
 
+ 
 \begin{prop}\label{prop:medida_int}
+ 
     \label{ob1}
 	Sean $\mu$ una medida de Borel con signo \deleted{ y finita,} y  \replaced{ $f\in L^1(|\mu|)$}{$f\in L^1(\mu)$}. Si \added{definimos}  $$\nu(A)=\int_A f\; d\mu,$$ entonces \added{$\nu$ es una medida con signo absolutamente continua respecto a $|\mu|$ y} para toda función \replaced{$g\in L^1(|\nu|)$}{$g\in L^1(\nu)$} vale que \replaced{$gf\in L^1(|\mu|)$}{$gf\in L^1(\mu)$} y 
 	\begin{equation*}
