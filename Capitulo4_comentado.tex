@@ -19,20 +19,27 @@ De acuerdo a  la Definición \ref{def:sol},  una solución de \eqref{eq:P} es un
 \begin{equation}\label{eq:integral}
     \varphi(t)=\alpha+\int_{[0,t)}f(s,\varphi(s)) \;d\mu.
 \end{equation}
-El procedimiento consta de dos partes. En la primera se aproxima la solución al problema de valores iniciales \ref{eq:P} mediante iteraciones sucesivas de Picard \cite{Simmons}, las cuales se generan de la siguiente manera
+
+El procedimiento consta de dos partes. En la primera se aproxima la solución al problema de valores iniciales \ref{eq:P} mediante iteraciones sucesivas de Picard 
+\cite{Simmons}, las cuales se generan de la siguiente manera
 \begin{equation*}
     \begin{split}
         &\varphi_0=\alpha\\
-        &\varphi_k(t)=\alpha+\int_{0,t}f(s,\varphi_{k-1}(s)) \,d\mu.
+        &\varphi_k(t)=\alpha+\int_{0,t}f(s,\varphi_{k-1}(s)) \,d\mu\textrm{\todo{Falta el símbolo de cierre del intervalos de integración}}.
     \end{split}
 \end{equation*}
-\textcolor{blue}{En \cite{P.Mazzone} los autores muestran que   las iteraciones de Picard convergen  a la solución en un caso más general, en el Teorema \ref{th:picar} mostraremos la convergencia en nuestro caso particular y además veremos con qué velocidad converge}. 
+\textcolor{blue}{En \cite{P.Mazzone} los autores muestran que   las iteraciones de Picard convergen  a la solución en un caso más general, en el Teorema \ref{th:picar} mostraremos la convergencia en nuestro caso particular y además veremos con qué velocidad converge}\comment{No me gusta cuando decis que vas a probrar un caso particular, pues le quitas valor al resultado. Si bien puede ser cierto, que es un caso particular en un sentido, pero la convergencia es global y se discute la velocidad del método. Te propongo lo que escribo en verde}.
+\added{En \cite{P.Mazzone} los autores muestran que   las iteraciones de Picard convergen  a la solución localmente. Basado en este resultado, obtuvimos nuestros Teorema \ref{th:picar} y Corolario \ref{cor:velocidad} donde se identifican hipótesis  que garantizan la convergencia global del método de aproximaciones sucesivas  y se dan estimaciones de la velocidad de convergencia.
+}
 
-La segunda parte consiste en aproximar el término de la derecha de \eqref{eq:integral}, el cual es una integral en el sentido de Labesgue-Stieljes. Para aproximar la integral de (L-S) usaremos  sumas de Riemann-Stieljes, de la siguiente manera
+
+
+
+La segunda parte consiste en aproximar el término de la derecha de \eqref{eq:integral}, el cual es una integral en el sentido de \replaced{Lebesgue-Stieltjes}{Labesgue-Stieljes}. Para aproximar la integral de (L-S) usaremos  sumas de Riemann-\replaced{Stieltjes}{Stieljes}, de la siguiente manera
 \begin{equation}\label{eq:4.1.2}
     \int_{[0,t)}f(s,\varphi(s))\; d\mu \approx \sum_{k=1}^{n-1}f(t_k,\varphi(t_k))\mu\left([t_k,t_{k+1})\right),
 \end{equation}
-donde los puntos $\{t_k\}$ son una partición del intervalo $[0,t]$. Cabe aclarar que la función  que estamos integrando no es necesariamente  integrable en el sentido de la integral de Riemann-Stieljes (R-S)\index[Simbolo]{(R-S)}. Para que la integral de (R-S) exista es suficiente que la función sea continua \cite{Lakshmikan} o el conjunto de discontinuidades tenga medida cero con respecto a la medida $\mu$ \cite{Hobson}, lo cual por lo general no pasa. En el Teorema \ref{th:R-S} veremos que cuando evaluamos la función en el miembro de la izquierda  de \eqref{eq:4.1.2}, la suma de (R-S) efectivamente converge a la integral de (L-S).
+donde los puntos $\{t_k\}$ son una partición del intervalo $[0,t]$. Cabe aclarar que la función  que estamos integrando no es necesariamente  integrable en el sentido de la integral de Riemann-Stieljes (R-S)\index[Simbolo]{(R-S)}. Para que la integral de (R-S) exista es suficiente que la función sea continua \cite{Lakshmikan} o el conjunto de discontinuidades tenga medida cero con respecto a la medida $\mu$ \cite{Hobson}, lo cual por lo general no pasa. En el Teorema \ref{th:R-S} veremos que cuando \highlight[comment={No entiendo, en el miembro de la izquierda está la integral. Por otra parte, esto no está en contradicción con la afirmación al comienzo: ``la función  que estamos integrando no es necesariamente  integrable en el sentido de la integral de Riemann-Stieljes'' }]{evaluamos la función en el miembro de la izquierda}  de \eqref{eq:4.1.2}, la suma de (R-S) efectivamente converge a la integral de (L-S).
 
 
 
@@ -45,16 +52,16 @@ donde los puntos $\{t_k\}$ son una partición del intervalo $[0,t]$. Cabe aclara
     \left|\int_{[0,T)}F(s)\; d\mu - \sum_{k=1}^{n-1}F(t_k)\mu\left([t_k,t_{k+1})\right)\right|<\epsilon,
 \end{equation*}   
 siempre que $\max\{t_{k+1}-t_k\}<\delta$.
-\textcolor{blue}{Así está bien?}
+\textcolor{blue}{Así está bien?}\reversemarginpar\comment{Me parece que si}\normalmarginpar
 \end{thm}
 \begin{proof}[Dem.]
-Supongamos que la afirmación es falsa, entonces para todo $\in\nn$ existe una partición $P^n_k=\{0=t^n_1, t^n_2, \ldots, t^n_k=T\}$ del intervalo $[0,T]$ tal que $\max\{t_{k+1}-t_k\}<1/n$ y
+Supongamos que la afirmación es falsa, entonces para todo \replaced{$n \in\nn$}{$\in\nn$}  existe una partición $P^n_k=\{0=t^n_1, t^n_2, \ldots, t^n_k=T\}$ del intervalo $[0,T]$ tal que $\max\{t_{k+1}-t_k\}<1/n$ y\newpage
 \begin{equation}\label{eq:4.6}
-    \left|\int_{[0,T)}F(s)\; d\mu - \sum_{k=1}^{n-1}F(t_k)\mu\left([t_k,t_{k+1})\right)\right|>\epsilon.
+    \left|\int_{[0,T)}F(s)\; d\mu - \sum_{k=1}^{n-1}F(t_k)\mu\left([t_k,t_{k+1})\right)\right|>\epsilon\textrm{\todo{Presta atención a los signos $>$ y $\geq$, no es que sean errores insalvables pero es más prolijo dejarlo bien. Otra: el $n$ no era la cantidad de elementos en la partición, era el $k$, en la sumatoria usá otro índice que va hasta $k-1$. Otra: a los $t$ le faltan los supra-índices que tenían.}}.
 \end{equation}    
 Si armamos la función simple 
 $$\Phi(t)=\sum_{k=1}^{n-1}F(t_k) \chi_{[t^n_k,t^n_{k+1})}$$
-para cada $t\in[0,T]$ existe un intervalo de la partición $P^n_k$ tal que $t\in[t_k,t_{k+1})$ y además $t-1/n<t^n_k$, por lo tanto $t^n_k$ tiende a $t$ por izquierda cuando $n\to \infty$. Como $F$ es continua a izquierda, tenemos que
+para cada $t\in[0,T]$\reversemarginpar\comment{O bien tomamos $t\in[0,T)$ o la última característica debería ser  $\chi_{[t^n_n,t^n_{n+1}]}$, sino la afirmación no pasa cuando $t=T$. } existe un intervalo de la partición $P^n_k$ tal que $t\in[t_k,t_{k+1})$ y además $t-1/n<t^n_k$, por lo tanto $t^n_k$ tiende a $t$ por izquierda cuando $n\to \infty$. Como $F$ es continua a izquierda, tenemos que
 \begin{equation*}
 \begin{split}
     |\Phi(t)-F(t)|=\left|\sum_{k=1}^{n-1}[F(t_k)-F(t)] \chi_{[t^n_k,t^n_{k+1})} \right|\leq |F(t^n_k)-F(t)|\to 0
@@ -66,32 +73,31 @@ Luego, como $|F|<M$ entonces $|\Phi|<M$ y por el Teorema de la convergencia mayo
     \int_{[0,T)}F(t)\, d\mu&=\lim_{n\to \infty}\int_{[0,T)}\Phi(t)\, d\mu=\lim_{n\to \infty}\int_{[0,T)}\sum_{k=1}^{n-1}F(t_k) \chi_{[t^n_k,t^n_{k+1})}\, d\mu \\ &=\lim_{n\to \infty}\sum_{k=1}^{n-1}F(t_k) \mu([t^n_k,t^n_{k+1})).
 \end{split}
 \end{equation*}
-Llegamos a un absurdo, pues se contradice \eqref{eq:4.6}
+Llegamos a un absurdo, pues se contradice \eqref{eq:4.6} \comment{No parece hacer falta planteear la demostración por el absurdo, pues terminas probando la afirmación del enunciado.}
 \end{proof}
-Antes de ver el caso particular de las iteraciones de Picard, vamos a enunciar el Teorema de punto fijo de Banach cuya demostración se puede ver en \cite{Amster}.
+Antes de ver \replaced{nuestro resultado de convergencia}{el caso particular } de las iteraciones de Picard, vamos a enunciar el Teorema de punto fijo \comment{Si abajo escribiste ``Punto Fijo2 con mayúsculas, aca también va así} de Banach cuya demostración se puede ver en \cite{Amster}.
 \begin{thm}[Punto Fijo de Banach]
-Sea $\mathcal{X}$ un espacio métrico completo, $T:\mathcal{X}\to \mathcal{X}$ y  $\exists K<1$ tal que 
+Sea $\mathcal{X}$ un espacio métrico completo, $T:\mathcal{X}\to \mathcal{X}$ y \added{supongamos que} $\exists K<1$ tal que 
 \begin{equation*}
     d(T[x],T[y])\leq Kd(x,y)    
 \end{equation*}
-para todo $x,y\in \mathcal{X}$. Entonces $T$ tiene un único punto fijo $\tilde{x}$. Además, si $x_0\in \mathcal{X}$ es un punto arbitrario y $\{x_{n}\}_n^\infty=0$, la sucesión recursiva definida como   $x_n=T(x_{n-1})$, entonces $\tilde{x}=\lim_{n\to \infty}x_n$.
+para todo $x,y\in \mathcal{X}$. Entonces $T$ tiene un único punto fijo $\tilde{x}$. Además, si $x_0\in \mathcal{X}$ es un punto arbitrario y $\{x_{n}\}_n^\infty=0$\comment{Algo no está bien con el $=0$}, la sucesión recursiva definida como   $x_n=T(x_{n-1})$, entonces $\tilde{x}=\lim_{n\to \infty}x_n$.
 \end{thm}
-El siguiente corolario es muy útil para definir las iteraciones de Picard.
+El siguiente corolario es muy útil para definir las iteraciones de Picard\comment{Las iteraciones de Picard las podes definir sin la ayuda de este Corolario, debes queres decir que es útil para otra cosa}.
 \begin{cor}\label{col:picard}
 Sea $\mathcal{X}$ un espacio métrico completo. Definimos  $T^n=T\circ T\circ ...\circ T$ ($n$-veces) y además $\exists K<1$ tal que 
     \begin{equation*}
     d(T^n[x],T^n[y])\leq Kd(x,y)    
     \end{equation*}
-para todo $x,y\in \mathcal{X}$ y para todo $n$. Entonces $T$ tiene un único punto fijo en $\mathcal{X}$.
+para todo $x,y\in \mathcal{X}$ y para todo $n$\comment{No es ``para todo $n$'', sino estamos de nuevo en el Teorema de Banach, lo correcto es  ``existe un $n$'' }. Entonces $T$ tiene un único punto fijo en $\mathcal{X}$.
 \end{cor}
  
-
-\newpage
+ 
 \begin{thm}\label{th:picar}
-    Sea $\mu$ una medida de Borel finita y positiva en $[0,T]$, y sea $f:[0,T]\times\rr^n\to\rr^n$ continua y que satisface \ref{f lipschitz},\comment{Cuando cites ecuaciones usa el comando \texttt{$\backslash$ eqref}, asi el lector sabe que tiene que buscar una ecuación y no un enunciado. Otra cosa, me parece que faltan hipótesis para $f$. En vistas de este teorema que citas, tenemos que analizar si incluir el que enunciasnte en un capítulo anterior } entonces el problema \eqref{eq:P} tiene una única solución, es decir existe una única función $\varphi\in BV([0,T],\rr^n)$, continua a izquierda tal que 
+    Sea $\mu$ una medida de Borel finita y positiva en $[0,T]$, y sea $f:[0,T]\times\rr^n\to\rr^n$ continua y que satisface \ref{f lipschitz},\reversemarginpar\comment{Cuando cites ecuaciones usa el comando \texttt{$\backslash$ eqref}, asi el lector sabe que tiene que buscar una ecuación y no un enunciado. Otra cosa, me parece que faltan hipótesis para $f$. En vistas de este teorema que citas, tenemos que analizar si incluir el que enunciasnte en un capítulo anterior } entonces el problema \eqref{eq:P} tiene una única solución, es decir existe una única función $\varphi\in BV([0,T],\rr^n)$, continua a izquierda tal que 
  
     \begin{equation*}
-        \varphi(t)=\alpha + \int_{[0,t)}f(s,\varphi(s))\, d\mu.
+        \varphi(t)=\alpha + \int_{[0,t)}f(s,\varphi(s))\, d\mu,\quad\added{t\in [0,T]}. 
     \end{equation*}
 \end{thm}
 \begin{proof}[Dem.] %\vphantom{a}\\
@@ -224,7 +230,7 @@ Luego $T$ cumple con las hipótesis del corolario \ref{col:picard} y existe $\va
 $$\varphi(t)=\alpha\int_{[0,t)}f(s,\varphi(s) \, d\mu.$$
 \end{proof}
 
-\begin{cor}[Velocidad de convergencia]
+\begin{cor}[Velocidad de convergencia]\label{cor:velocidad}
 Si estamos en las condiciones del Teorema \ref{th:picar} y $\varphi$ es un punto fijo de $T$, definido como \eqref{eq:T}. Entonces para cualquier $\varphi_1\in BV_\alpha([0,T],\rr^n)$ y continua a izquierda, \textcolor{red}{vale} que
     \begin{equation}
     |T^n[\varphi_1](t)-\varphi(t)|\leq \dfrac{\left(L\mu([0,T])\right)^n}{n!}d(\varphi_1,\varphi)   ,     
